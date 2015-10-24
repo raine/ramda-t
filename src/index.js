@@ -53,7 +53,6 @@ const validArgType = (val, arg) =>
 const hasMethod = pipe(prop, type, equals('Function'))
 
 const check = curry((fnName, idx, val) => {
-  console.log(fnName, idx, val)
   const fn = find(propEq('name', fnName), docs)
   const arg = getArg(fn, idx)
 

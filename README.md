@@ -1,3 +1,5 @@
+# ramda-t
+
 ## caveats
 
 - `R.map`'s second argument is type of `Array`. Becomes an issue when `R.map`
