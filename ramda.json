@@ -1,0 +1,3788 @@
+[
+  {
+    "args": [
+      {
+        "name": "val",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "name": "always",
+    "sig": "a -> (* -> a)"
+  },
+  {
+    "args": [
+      {
+        "name": "fn",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "args",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "apply",
+    "sig": "(*... -> a) -> [*] -> a"
+  },
+  {
+    "args": [
+      {
+        "name": "fn",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "thisObj",
+        "types": [
+          "Object"
+        ]
+      }
+    ],
+    "name": "bind",
+    "sig": "(* -> *) -> {*} -> (* -> *)"
+  },
+  {
+    "args": [
+      {
+        "name": "pred",
+        "types": [
+          "Function"
+        ]
+      }
+    ],
+    "name": "comparator",
+    "sig": "(a, b -> Boolean) -> (a, b -> Number)"
+  },
+  {
+    "args": [
+      {
+        "name": "length",
+        "types": [
+          "Number"
+        ]
+      },
+      {
+        "name": "fn",
+        "types": [
+          "Function"
+        ]
+      }
+    ],
+    "name": "curryN",
+    "sig": "Number -> (* -> a) -> (* -> a)"
+  },
+  {
+    "args": [
+      {
+        "name": "x",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "name": "empty",
+    "sig": "a -> a"
+  },
+  {
+    "args": [
+      {
+        "name": "x",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "name": "identity",
+    "sig": "a -> a"
+  },
+  {
+    "args": [
+      {
+        "name": "n",
+        "types": [
+          "Number"
+        ]
+      },
+      {
+        "name": "fn",
+        "types": [
+          "Function"
+        ]
+      }
+    ],
+    "name": "nAry",
+    "sig": "Number -> (* -> a) -> (* -> a)"
+  },
+  {
+    "args": [
+      {
+        "name": "n",
+        "types": [
+          "Number"
+        ]
+      }
+    ],
+    "name": "nthArg",
+    "sig": "Number -> *... -> *"
+  },
+  {
+    "args": [
+      {
+        "name": "x",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "name": "of",
+    "sig": "a -> [a]"
+  },
+  {
+    "args": [
+      {
+        "name": "fn",
+        "types": [
+          "Function"
+        ]
+      }
+    ],
+    "name": "once",
+    "sig": "(a... -> b) -> (a... -> b)"
+  },
+  {
+    "args": [
+      {
+        "name": "fn",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "x",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "name": "tap",
+    "sig": "(a -> *) -> a -> a"
+  },
+  {
+    "args": [
+      {
+        "name": "fn",
+        "types": [
+          "Function"
+        ]
+      }
+    ],
+    "name": "unapply",
+    "sig": "([*...] -> a) -> (*... -> a)"
+  },
+  {
+    "args": [
+      {
+        "name": "fn",
+        "types": [
+          "Function"
+        ]
+      }
+    ],
+    "name": "unary",
+    "sig": "(* -> b) -> (a -> b)"
+  },
+  {
+    "args": [
+      {
+        "name": "length",
+        "types": [
+          "Number"
+        ]
+      },
+      {
+        "name": "fn",
+        "types": [
+          "Function"
+        ]
+      }
+    ],
+    "name": "uncurryN",
+    "sig": "Number -> (a -> b) -> (a -> c)"
+  },
+  {
+    "args": [
+      {
+        "name": "fn",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "wrapper",
+        "types": [
+          "Function"
+        ]
+      }
+    ],
+    "name": "wrap",
+    "sig": "(a... -> b) -> ((a... -> b) -> a... -> c) -> (a... -> c)"
+  },
+  {
+    "args": [
+      {
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "name": "F",
+    "sig": "* -> Boolean"
+  },
+  {
+    "args": [
+      {
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "name": "T",
+    "sig": "* -> Boolean"
+  },
+  {
+    "args": [
+      {
+        "name": "fn",
+        "types": [
+          "Function"
+        ]
+      }
+    ],
+    "name": "addIndex",
+    "sig": "((a ... -> b) ... -> [a] -> *) -> (a ..., Int, [a] -> b) ... -> [a] -> *)"
+  },
+  {
+    "args": [
+      {
+        "name": "fn",
+        "types": [
+          "Function"
+        ]
+      }
+    ],
+    "name": "binary",
+    "sig": "(* -> c) -> (a, b -> c)"
+  },
+  {
+    "args": [
+      {
+        "name": "fn",
+        "types": [
+          "Function"
+        ]
+      }
+    ],
+    "name": "curry",
+    "sig": "(* -> a) -> (* -> a)"
+  },
+  {
+    "args": [
+      {
+        "name": "fn",
+        "types": [
+          "Function"
+        ]
+      }
+    ],
+    "name": "flip",
+    "sig": "(a -> b -> c -> ... -> z) -> (b -> a -> c -> ... -> z)"
+  },
+  {
+    "args": [
+      {
+        "name": "f",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "args",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "partial",
+    "sig": "((a, b, c, ..., n) -> x) -> [a, b, c, ...] -> ((d, e, f, ..., n) -> x)"
+  },
+  {
+    "args": [
+      {
+        "name": "f",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "args",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "partialRight",
+    "sig": "((a, b, c, ..., n) -> x) -> [d, e, f, ..., n] -> ((a, b, c, ...) -> x)"
+  },
+  {
+    "args": [
+      {
+        "name": "fn",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "transformers",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "useWith",
+    "sig": "(x1 -> x2 -> ... -> z) -> [(a -> x1), (b -> x2), ...] -> (a -> b -> ... -> z)"
+  },
+  {
+    "args": [
+      {
+        "name": "fns",
+        "types": [
+          "Array"
+        ]
+      },
+      {
+        "name": "vs",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "ap",
+    "sig": "[f] -> [a] -> [f a]"
+  },
+  {
+    "args": [
+      {
+        "name": "fn",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "args",
+        "types": [
+          "*"
+        ],
+        "variable": true
+      }
+    ],
+    "name": "call",
+    "sig": "(*... -> a),*... -> a"
+  },
+  {
+    "args": [
+      {
+        "name": "n",
+        "types": [
+          "Number"
+        ]
+      },
+      {
+        "name": "Fn",
+        "types": [
+          "Function"
+        ]
+      }
+    ],
+    "name": "constructN",
+    "sig": "Number -> (* -> {*}) -> (* -> {*})"
+  },
+  {
+    "args": [
+      {
+        "name": "after",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "functions",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "converge",
+    "sig": "(x1 -> x2 -> ... -> z) -> [(a -> b -> ... -> x1), (a -> b -> ... -> x2), ...] -> (a -> b -> ... -> z)"
+  },
+  {
+    "args": [
+      {
+        "name": "fn",
+        "types": [
+          "Function"
+        ]
+      }
+    ],
+    "name": "liftN",
+    "sig": "Number -> (*... -> *) -> ([*]... -> [*])"
+  },
+  {
+    "args": [
+      {
+        "name": "functions",
+        "types": [
+          "Function"
+        ],
+        "variable": true
+      }
+    ],
+    "name": "pipe",
+    "sig": "(((a, b, ..., n) -> o), (o -> p), ..., (x -> y), (y -> z)) -> ((a, b, ..., n) -> z)"
+  },
+  {
+    "args": [
+      {
+        "name": "functions",
+        "types": [
+          "Function"
+        ],
+        "variable": true
+      }
+    ],
+    "name": "pipeP",
+    "sig": "((a -> Promise b), (b -> Promise c), ..., (y -> Promise z)) -> (a -> Promise z)"
+  },
+  {
+    "args": [
+      {
+        "name": "functions",
+        "types": [
+          "Function"
+        ],
+        "variable": true
+      }
+    ],
+    "name": "compose",
+    "sig": "((y -> z), (x -> y), ..., (o -> p), ((a, b, ..., n) -> o)) -> ((a, b, ..., n) -> z)"
+  },
+  {
+    "args": [
+      {
+        "types": [
+          "Function"
+        ],
+        "variable": true
+      }
+    ],
+    "name": "composeK",
+    "sig": "Chain m => ((y -> m z), (x -> m y), ..., (a -> m b)) -> (m a -> m z)"
+  },
+  {
+    "args": [
+      {
+        "name": "functions",
+        "types": [
+          "Function"
+        ],
+        "variable": true
+      }
+    ],
+    "name": "composeP",
+    "sig": "((y -> Promise z), (x -> Promise y), ..., (a -> Promise b)) -> (a -> Promise z)"
+  },
+  {
+    "args": [
+      {
+        "name": "Fn",
+        "types": [
+          "Function"
+        ]
+      }
+    ],
+    "name": "construct",
+    "sig": "(* -> {*}) -> (* -> {*})"
+  },
+  {
+    "args": [
+      {
+        "name": "fn",
+        "types": [
+          "Function"
+        ]
+      }
+    ],
+    "name": "lift",
+    "sig": "(*... -> *) -> ([*]... -> [*])"
+  },
+  {
+    "args": [
+      {
+        "types": [
+          "Function"
+        ],
+        "variable": true
+      }
+    ],
+    "name": "pipeK",
+    "sig": "Chain m => ((a -> m b), (b -> m c), ..., (y -> m z)) -> (m a -> m z)"
+  },
+  {
+    "args": [
+      {
+        "name": "arity",
+        "types": [
+          "Number"
+        ]
+      },
+      {
+        "name": "method",
+        "types": [
+          "Function"
+        ]
+      }
+    ],
+    "name": "invoker",
+    "sig": "Number -> String -> (a -> b -> ... -> n -> Object -> *)"
+  },
+  {
+    "args": [
+      {
+        "name": "fn",
+        "types": [
+          "Function"
+        ]
+      }
+    ],
+    "name": "memoize",
+    "sig": "(*... -> a) -> (*... -> a)"
+  },
+  {
+    "args": [
+      {
+        "name": "fn",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "idx",
+        "types": [
+          "Number"
+        ]
+      },
+      {
+        "name": "list",
+        "types": [
+          "Array",
+          "Arguments"
+        ]
+      }
+    ],
+    "name": "adjust",
+    "sig": "(a -> a) -> Number -> [a] -> [a]"
+  },
+  {
+    "args": [
+      {
+        "name": "el",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "list",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "append",
+    "sig": "a -> [a] -> [a]"
+  },
+  {
+    "args": [
+      {
+        "name": "pred",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "x",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "list",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "containsWith",
+    "sig": "(a, a -> Boolean) -> a -> [a] -> Boolean"
+  },
+  {
+    "args": [
+      {
+        "name": "fn",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "list",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "dropLastWhile",
+    "sig": "(a -> Boolean) -> [a] -> [a]"
+  },
+  {
+    "args": [
+      {
+        "name": "pairs",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "fromPairs",
+    "sig": "[[k,v]] -> {k: v}"
+  },
+  {
+    "args": [
+      {
+        "name": "index",
+        "types": [
+          "Number"
+        ]
+      },
+      {
+        "name": "elt",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "list",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "insert",
+    "sig": "Number -> a -> [a] -> [a]"
+  },
+  {
+    "args": [
+      {
+        "name": "index",
+        "types": [
+          "Number"
+        ]
+      },
+      {
+        "name": "elts",
+        "types": [
+          "Array"
+        ]
+      },
+      {
+        "name": "list",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "insertAll",
+    "sig": "Number -> [a] -> [a] -> [a]"
+  },
+  {
+    "args": [
+      {
+        "name": "list",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "length",
+    "sig": "[a] -> Number"
+  },
+  {
+    "args": [
+      {
+        "name": "fn",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "acc",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "list",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "mapAccum",
+    "sig": "(acc -> x -> (acc, y)) -> acc -> [x] -> (acc, [y])"
+  },
+  {
+    "args": [
+      {
+        "name": "fn",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "acc",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "list",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "mapAccumRight",
+    "sig": "(acc -> x -> (acc, y)) -> acc -> [x] -> (acc, [y])"
+  },
+  {
+    "args": [
+      {
+        "name": "offset",
+        "types": [
+          "Number"
+        ]
+      },
+      {
+        "name": "list",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "name": "nth",
+    "sig": "Number -> [a] -> a | Undefined"
+  },
+  {
+    "args": [
+      {
+        "name": "fst",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "snd",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "name": "pair",
+    "sig": "a -> b -> (a,b)"
+  },
+  {
+    "args": [
+      {
+        "name": "el",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "list",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "prepend",
+    "sig": "a -> [a] -> [a]"
+  },
+  {
+    "args": [
+      {
+        "name": "from",
+        "types": [
+          "Number"
+        ]
+      },
+      {
+        "name": "to",
+        "types": [
+          "Number"
+        ]
+      }
+    ],
+    "name": "range",
+    "sig": "Number -> Number -> [Number]"
+  },
+  {
+    "args": [
+      {
+        "name": "fn",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "acc",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "list",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "reduceRight",
+    "sig": "(a,b -> a) -> a -> [b] -> a"
+  },
+  {
+    "args": [
+      {
+        "name": "x",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "name": "reduced",
+    "sig": "a -> *"
+  },
+  {
+    "args": [
+      {
+        "name": "start",
+        "types": [
+          "Number"
+        ]
+      },
+      {
+        "name": "count",
+        "types": [
+          "Number"
+        ]
+      },
+      {
+        "name": "list",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "remove",
+    "sig": "Number -> Number -> [a] -> [a]"
+  },
+  {
+    "args": [
+      {
+        "name": "list",
+        "types": [
+          "Array",
+          "String"
+        ]
+      }
+    ],
+    "name": "reverse",
+    "sig": "[a] -> [a]"
+  },
+  {
+    "args": [
+      {
+        "name": "fn",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "acc",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "list",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "scan",
+    "sig": "(a,b -> a) -> a -> [b] -> [a]"
+  },
+  {
+    "args": [
+      {
+        "name": "comparator",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "list",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "sort",
+    "sig": "(a,a -> Number) -> [a] -> [a]"
+  },
+  {
+    "args": [
+      {
+        "name": "fn",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "list",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "takeLastWhile",
+    "sig": "(a -> Boolean) -> [a] -> [a]"
+  },
+  {
+    "args": [
+      {
+        "name": "fn",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "n",
+        "types": [
+          "Number"
+        ]
+      }
+    ],
+    "name": "times",
+    "sig": "(i -> a) -> i -> [a]"
+  },
+  {
+    "args": [
+      {
+        "name": "fn",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "seed",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "name": "unfold",
+    "sig": "(a -> [b]) -> * -> [b]"
+  },
+  {
+    "args": [
+      {
+        "name": "pred",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "list",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "uniqWith",
+    "sig": "(a, a -> Boolean) -> [a] -> [a]"
+  },
+  {
+    "args": [
+      {
+        "name": "idx",
+        "types": [
+          "Number"
+        ]
+      },
+      {
+        "name": "x",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "list",
+        "types": [
+          "Array",
+          "Arguments"
+        ]
+      }
+    ],
+    "name": "update",
+    "sig": "Number -> a -> [a] -> [a]"
+  },
+  {
+    "args": [
+      {
+        "name": "as",
+        "types": [
+          "Array"
+        ]
+      },
+      {
+        "name": "bs",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "xprod",
+    "sig": "[a] -> [b] -> [[a,b]]"
+  },
+  {
+    "args": [
+      {
+        "name": "list1",
+        "types": [
+          "Array"
+        ]
+      },
+      {
+        "name": "list2",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "zip",
+    "sig": "[a] -> [b] -> [[a,b]]"
+  },
+  {
+    "args": [
+      {
+        "name": "keys",
+        "types": [
+          "Array"
+        ]
+      },
+      {
+        "name": "values",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "zipObj",
+    "sig": "[String] -> [*] -> {String: *}"
+  },
+  {
+    "args": [
+      {
+        "name": "fn",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "list1",
+        "types": [
+          "Array"
+        ]
+      },
+      {
+        "name": "list2",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "zipWith",
+    "sig": "(a,b -> c) -> [a] -> [b] -> [c]"
+  },
+  {
+    "args": [
+      {
+        "name": "fn",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "list",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "all",
+    "sig": "(a -> Boolean) -> [a] -> Boolean"
+  },
+  {
+    "args": [
+      {
+        "name": "fn",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "list",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "any",
+    "sig": "(a -> Boolean) -> [a] -> Boolean"
+  },
+  {
+    "args": [
+      {
+        "name": "n",
+        "types": [
+          "Number"
+        ]
+      },
+      {
+        "name": "list",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "aperture",
+    "sig": "Number -> [a] -> [[a]]"
+  },
+  {
+    "args": [
+      {
+        "name": "fn",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "list",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "dropWhile",
+    "sig": "(a -> Boolean) -> [a] -> [a]"
+  },
+  {
+    "args": [
+      {
+        "name": "fn",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "list",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "filter",
+    "sig": "(a -> Boolean) -> [a] -> [a]"
+  },
+  {
+    "args": [
+      {
+        "name": "fn",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "list",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "find",
+    "sig": "(a -> Boolean) -> [a] -> a | undefined"
+  },
+  {
+    "args": [
+      {
+        "name": "fn",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "list",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "findIndex",
+    "sig": "(a -> Boolean) -> [a] -> Number"
+  },
+  {
+    "args": [
+      {
+        "name": "fn",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "list",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "findLast",
+    "sig": "(a -> Boolean) -> [a] -> a | undefined"
+  },
+  {
+    "args": [
+      {
+        "name": "fn",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "list",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "findLastIndex",
+    "sig": "(a -> Boolean) -> [a] -> Number"
+  },
+  {
+    "args": [
+      {
+        "name": "list",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "flatten",
+    "sig": "[a] -> [b]"
+  },
+  {
+    "args": [
+      {
+        "name": "fn",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "list",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "forEach",
+    "sig": "(a -> *) -> [a] -> [a]"
+  },
+  {
+    "args": [
+      {
+        "name": "fn",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "list",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "groupBy",
+    "sig": "(a -> String) -> [a] -> {String: [a]}"
+  },
+  {
+    "args": [
+      {
+        "name": "list",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "name": "head",
+    "sig": "[a] -> a | Undefined"
+  },
+  {
+    "args": [
+      {
+        "name": "separator",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "list",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "intersperse",
+    "sig": "a -> [a] -> [a]"
+  },
+  {
+    "args": [
+      {
+        "name": "list",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "name": "last",
+    "sig": "[a] -> a | Undefined"
+  },
+  {
+    "args": [
+      {
+        "name": "target",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "xs",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "lastIndexOf",
+    "sig": "a -> [a] -> Number"
+  },
+  {
+    "args": [
+      {
+        "name": "fn",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "list",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "map",
+    "sig": "Functor f => (a -> b) -> f a -> f b"
+  },
+  {
+    "args": [
+      {
+        "name": "fn",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "list",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "none",
+    "sig": "(a -> Boolean) -> [a] -> Boolean"
+  },
+  {
+    "args": [
+      {
+        "name": "pred",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "list",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "partition",
+    "sig": "(a -> Boolean) -> [a] -> [[a],[a]]"
+  },
+  {
+    "args": [
+      {
+        "name": "key",
+        "types": [
+          "Number",
+          "String"
+        ]
+      },
+      {
+        "name": "list",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "pluck",
+    "sig": "k -> [{k: v}] -> [v]"
+  },
+  {
+    "args": [
+      {
+        "name": "fn",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "acc",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "list",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "reduce",
+    "sig": "(a,b -> a) -> a -> [b] -> a"
+  },
+  {
+    "args": [
+      {
+        "name": "fn",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "list",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "reject",
+    "sig": "(a -> Boolean) -> [a] -> [a]"
+  },
+  {
+    "args": [
+      {
+        "name": "value",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "n",
+        "types": [
+          "Number"
+        ]
+      }
+    ],
+    "name": "repeat",
+    "sig": "a -> n -> [a]"
+  },
+  {
+    "args": [
+      {
+        "name": "fromIndex",
+        "types": [
+          "Number"
+        ]
+      },
+      {
+        "name": "toIndex",
+        "types": [
+          "Number"
+        ]
+      },
+      {
+        "name": "list",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "name": "slice",
+    "sig": "Number -> Number -> [a] -> [a]"
+  },
+  {
+    "args": [
+      {
+        "name": "n",
+        "types": [
+          "Number"
+        ]
+      },
+      {
+        "name": "list",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "splitEvery",
+    "sig": "Number -> [a] -> [[a]]"
+  },
+  {
+    "args": [
+      {
+        "name": "list",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "name": "tail",
+    "sig": "[a] -> [a]"
+  },
+  {
+    "args": [
+      {
+        "name": "n",
+        "types": [
+          "Number"
+        ]
+      },
+      {
+        "name": "list",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "name": "take",
+    "sig": "Number -> [a] -> [a]"
+  },
+  {
+    "args": [
+      {
+        "name": "fn",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "list",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "takeWhile",
+    "sig": "(a -> Boolean) -> [a] -> [a]"
+  },
+  {
+    "args": [
+      {
+        "name": "xf",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "fn",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "acc",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "list",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "transduce",
+    "sig": "(c -> c) -> (a,b -> a) -> a -> [b] -> a"
+  },
+  {
+    "args": [
+      {
+        "name": "list",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "uniq",
+    "sig": "[a] -> [a]"
+  },
+  {
+    "args": [
+      {
+        "name": "list",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "allUniq",
+    "sig": "[a] -> Boolean"
+  },
+  {
+    "args": [
+      {
+        "name": "fn",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "list",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "chain",
+    "sig": "(a -> [b]) -> [a] -> [b]"
+  },
+  {
+    "args": [
+      {
+        "name": "fn",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "of",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "list",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "commuteMap",
+    "sig": "Functor f => (a -> f b) -> (x -> f x) -> [a] -> f [b]"
+  },
+  {
+    "args": [
+      {
+        "name": "n",
+        "types": [
+          "Number"
+        ]
+      },
+      {
+        "name": "list",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "name": "drop",
+    "sig": "Number -> [a] -> [a]"
+  },
+  {
+    "args": [
+      {
+        "name": "n",
+        "types": [
+          "Number"
+        ]
+      },
+      {
+        "name": "xs",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "dropLast",
+    "sig": "Number -> [a] -> [a]"
+  },
+  {
+    "args": [
+      {
+        "name": "pred",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "list",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "dropRepeatsWith",
+    "sig": "(a, a -> Boolean) -> [a] -> [a]"
+  },
+  {
+    "args": [
+      {
+        "name": "target",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "xs",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "indexOf",
+    "sig": "a -> [a] -> Number"
+  },
+  {
+    "args": [
+      {
+        "name": "list",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "name": "init",
+    "sig": "[a] -> [a]"
+  },
+  {
+    "args": [
+      {
+        "name": "acc",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "xf",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "list",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "into",
+    "sig": "a -> (b -> b) -> [c] -> a"
+  },
+  {
+    "args": [
+      {
+        "name": "list",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "isSet",
+    "sig": "[a] -> Boolean"
+  },
+  {
+    "args": [
+      {
+        "name": "list",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "mergeAll",
+    "sig": "[{k: v}] -> {k: v}"
+  },
+  {
+    "args": [
+      {
+        "name": "n",
+        "types": [
+          "Number"
+        ]
+      },
+      {
+        "name": "xs",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "takeLast",
+    "sig": "Number -> [a] -> [a]"
+  },
+  {
+    "args": [
+      {
+        "name": "list",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "name": "unnest",
+    "sig": "Chain c => c (c a) -> c a"
+  },
+  {
+    "args": [
+      {
+        "name": "of",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "list",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "commute",
+    "sig": "Functor f => (x -> f x) -> [f a] -> f [a]"
+  },
+  {
+    "args": [
+      {
+        "name": "a",
+        "types": [
+          "Object"
+        ]
+      },
+      {
+        "name": "list",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "contains",
+    "sig": "a -> [a] -> Boolean"
+  },
+  {
+    "args": [
+      {
+        "name": "list",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "dropRepeats",
+    "sig": "[a] -> [a]"
+  },
+  {
+    "args": [
+      {
+        "name": "fn",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "list",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "uniqBy",
+    "sig": "(a -> b) -> [a] -> [a]"
+  },
+  {
+    "args": [
+      {
+        "name": "separator",
+        "types": [
+          "Number",
+          "String"
+        ]
+      },
+      {
+        "name": "xs",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "join",
+    "sig": "String -> [a] -> String"
+  },
+  {
+    "args": [
+      {
+        "name": "a",
+        "types": [
+          "Array",
+          "String"
+        ]
+      },
+      {
+        "name": "b",
+        "types": [
+          "Array",
+          "String"
+        ]
+      }
+    ],
+    "name": "concat",
+    "sig": "[a] -> [a] -> [a]"
+  },
+  {
+    "args": [
+      {
+        "name": "a",
+        "types": [
+          "Boolean"
+        ]
+      },
+      {
+        "name": "b",
+        "types": [
+          "Boolean"
+        ]
+      }
+    ],
+    "name": "and",
+    "sig": "* -> * -> *"
+  },
+  {
+    "args": [
+      {
+        "name": "pairs",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "cond",
+    "sig": "[[(*... -> Boolean),(*... -> *)]] -> (*... -> *)"
+  },
+  {
+    "args": [
+      {
+        "name": "val",
+        "types": [
+          "A"
+        ]
+      },
+      {
+        "name": "val",
+        "types": [
+          "B"
+        ]
+      }
+    ],
+    "name": "defaultTo",
+    "sig": "a -> b -> a | b"
+  },
+  {
+    "args": [
+      {
+        "name": "condition",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "onTrue",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "onFalse",
+        "types": [
+          "Function"
+        ]
+      }
+    ],
+    "name": "ifElse",
+    "sig": "(*... -> Boolean) -> (*... -> *) -> (*... -> *) -> (*... -> *)"
+  },
+  {
+    "args": [
+      {
+        "name": "a",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "name": "not",
+    "sig": "* -> Boolean"
+  },
+  {
+    "args": [
+      {
+        "name": "a",
+        "types": [
+          "Boolean"
+        ]
+      },
+      {
+        "name": "b",
+        "types": [
+          "Boolean"
+        ]
+      }
+    ],
+    "name": "or",
+    "sig": "* -> * -> *"
+  },
+  {
+    "args": [
+      {
+        "name": "pred",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "name",
+        "types": [
+          "String"
+        ]
+      },
+      {
+        "name": "obj",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "name": "propSatisfies",
+    "sig": "(a -> Boolean) -> String -> {String: a} -> Boolean"
+  },
+  {
+    "args": [
+      {
+        "name": "pred",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "whenFalseFn",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "x",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "name": "unless",
+    "sig": "(a -> Boolean) -> (a -> a) -> a -> a"
+  },
+  {
+    "args": [
+      {
+        "name": "pred",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "whenTrueFn",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "x",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "name": "when",
+    "sig": "(a -> Boolean) -> (a -> a) -> a -> a"
+  },
+  {
+    "args": [
+      {
+        "name": "x",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "name": "isEmpty",
+    "sig": "a -> Boolean"
+  },
+  {
+    "args": [
+      {
+        "name": "preds",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "allPass",
+    "sig": "[(*... -> Boolean)] -> (*... -> Boolean)"
+  },
+  {
+    "args": [
+      {
+        "name": "preds",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "anyPass",
+    "sig": "[(*... -> Boolean)] -> (*... -> Boolean)"
+  },
+  {
+    "args": [
+      {
+        "name": "f",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "g",
+        "types": [
+          "Function"
+        ]
+      }
+    ],
+    "name": "both",
+    "sig": "(*... -> Boolean) -> (*... -> Boolean) -> (*... -> Boolean)"
+  },
+  {
+    "args": [
+      {
+        "name": "f",
+        "types": [
+          "Function"
+        ]
+      }
+    ],
+    "name": "complement",
+    "sig": "(*... -> *) -> (*... -> Boolean)"
+  },
+  {
+    "args": [
+      {
+        "name": "f",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "g",
+        "types": [
+          "Function"
+        ]
+      }
+    ],
+    "name": "either",
+    "sig": "(*... -> Boolean) -> (*... -> Boolean) -> (*... -> Boolean)"
+  },
+  {
+    "args": [
+      {
+        "name": "a",
+        "types": [
+          "Number"
+        ]
+      },
+      {
+        "name": "b",
+        "types": [
+          "Number"
+        ]
+      }
+    ],
+    "name": "add",
+    "sig": "Number -> Number -> Number"
+  },
+  {
+    "args": [
+      {
+        "name": "n",
+        "types": [
+          "Number"
+        ]
+      }
+    ],
+    "name": "dec",
+    "sig": "Number -> Number"
+  },
+  {
+    "args": [
+      {
+        "name": "a",
+        "types": [
+          "Number"
+        ]
+      },
+      {
+        "name": "b",
+        "types": [
+          "Number"
+        ]
+      }
+    ],
+    "name": "divide",
+    "sig": "Number -> Number -> Number"
+  },
+  {
+    "args": [
+      {
+        "name": "n",
+        "types": [
+          "Number"
+        ]
+      }
+    ],
+    "name": "inc",
+    "sig": "Number -> Number"
+  },
+  {
+    "args": [
+      {
+        "name": "m",
+        "types": [
+          "Number"
+        ]
+      },
+      {
+        "name": "p",
+        "types": [
+          "Number"
+        ]
+      }
+    ],
+    "name": "mathMod",
+    "sig": "Number -> Number -> Number"
+  },
+  {
+    "args": [
+      {
+        "name": "a",
+        "types": [
+          "Number"
+        ]
+      },
+      {
+        "name": "b",
+        "types": [
+          "Number"
+        ]
+      }
+    ],
+    "name": "modulo",
+    "sig": "Number -> Number -> Number"
+  },
+  {
+    "args": [
+      {
+        "name": "a",
+        "types": [
+          "Number"
+        ]
+      },
+      {
+        "name": "b",
+        "types": [
+          "Number"
+        ]
+      }
+    ],
+    "name": "multiply",
+    "sig": "Number -> Number -> Number"
+  },
+  {
+    "args": [
+      {
+        "name": "n",
+        "types": [
+          "Number"
+        ]
+      }
+    ],
+    "name": "negate",
+    "sig": "Number -> Number"
+  },
+  {
+    "args": [
+      {
+        "name": "a",
+        "types": [
+          "Number"
+        ]
+      },
+      {
+        "name": "b",
+        "types": [
+          "Number"
+        ]
+      }
+    ],
+    "name": "subtract",
+    "sig": "Number -> Number -> Number"
+  },
+  {
+    "args": [
+      {
+        "name": "list",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "sum",
+    "sig": "[Number] -> Number"
+  },
+  {
+    "args": [
+      {
+        "name": "list",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "mean",
+    "sig": "[Number] -> Number"
+  },
+  {
+    "args": [
+      {
+        "name": "list",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "median",
+    "sig": "[Number] -> Number"
+  },
+  {
+    "args": [
+      {
+        "name": "list",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "product",
+    "sig": "[Number] -> Number"
+  },
+  {
+    "args": [
+      {
+        "name": "prop",
+        "types": [
+          "String"
+        ]
+      },
+      {
+        "name": "val",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "obj",
+        "types": [
+          "Object"
+        ]
+      }
+    ],
+    "name": "assoc",
+    "sig": "String -> a -> {k: v} -> {k: v}"
+  },
+  {
+    "args": [
+      {
+        "name": "path",
+        "types": [
+          "Array"
+        ]
+      },
+      {
+        "name": "val",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "obj",
+        "types": [
+          "Object"
+        ]
+      }
+    ],
+    "name": "assocPath",
+    "sig": "[String] -> a -> {k: v} -> {k: v}"
+  },
+  {
+    "args": [
+      {
+        "name": "prop",
+        "types": [
+          "String"
+        ]
+      },
+      {
+        "name": "obj",
+        "types": [
+          "Object"
+        ]
+      }
+    ],
+    "name": "dissoc",
+    "sig": "String -> {k: v} -> {k: v}"
+  },
+  {
+    "args": [
+      {
+        "name": "path",
+        "types": [
+          "Array"
+        ]
+      },
+      {
+        "name": "obj",
+        "types": [
+          "Object"
+        ]
+      }
+    ],
+    "name": "dissocPath",
+    "sig": "[String] -> {k: v} -> {k: v}"
+  },
+  {
+    "args": [
+      {
+        "name": "transformations",
+        "types": [
+          "Object"
+        ]
+      },
+      {
+        "name": "object",
+        "types": [
+          "Object"
+        ]
+      }
+    ],
+    "name": "evolve",
+    "sig": "{k: (v -> v)} -> {k: v} -> {k: v}"
+  },
+  {
+    "args": [
+      {
+        "name": "prop",
+        "types": [
+          "String"
+        ]
+      },
+      {
+        "name": "obj",
+        "types": [
+          "Object"
+        ]
+      }
+    ],
+    "name": "has",
+    "sig": "s -> {s: x} -> Boolean"
+  },
+  {
+    "args": [
+      {
+        "name": "prop",
+        "types": [
+          "String"
+        ]
+      },
+      {
+        "name": "obj",
+        "types": [
+          "Object"
+        ]
+      }
+    ],
+    "name": "hasIn",
+    "sig": "s -> {s: x} -> Boolean"
+  },
+  {
+    "args": [
+      {
+        "name": "obj",
+        "types": [
+          "Object"
+        ]
+      }
+    ],
+    "name": "keys",
+    "sig": "{k: v} -> [k]"
+  },
+  {
+    "args": [
+      {
+        "name": "obj",
+        "types": [
+          "Object"
+        ]
+      }
+    ],
+    "name": "keysIn",
+    "sig": "{k: v} -> [k]"
+  },
+  {
+    "args": [
+      {
+        "name": "a",
+        "types": [
+          "Object"
+        ]
+      },
+      {
+        "name": "b",
+        "types": [
+          "Object"
+        ]
+      }
+    ],
+    "name": "merge",
+    "sig": "{k: v} -> {k: v} -> {k: v}"
+  },
+  {
+    "args": [
+      {
+        "name": "key",
+        "types": [
+          "String"
+        ]
+      },
+      {
+        "name": "val",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "name": "objOf",
+    "sig": "String -> a -> {String:a}"
+  },
+  {
+    "args": [
+      {
+        "name": "lens",
+        "types": [
+          "Lens"
+        ]
+      },
+      {
+        "name": "v",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "x",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "name": "over",
+    "sig": "Lens s a -> (a -> a) -> s -> s"
+  },
+  {
+    "args": [
+      {
+        "name": "path",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "path",
+    "sig": "[String] -> {k: v} -> v | Undefined"
+  },
+  {
+    "args": [
+      {
+        "name": "d",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "p",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "pathOr",
+    "sig": "a -> [String] -> Object -> a"
+  },
+  {
+    "args": [
+      {
+        "name": "names",
+        "types": [
+          "Array"
+        ]
+      },
+      {
+        "name": "obj",
+        "types": [
+          "Object"
+        ]
+      }
+    ],
+    "name": "pick",
+    "sig": "[k] -> {k: v} -> {k: v}"
+  },
+  {
+    "args": [
+      {
+        "name": "names",
+        "types": [
+          "Array"
+        ]
+      },
+      {
+        "name": "obj",
+        "types": [
+          "Object"
+        ]
+      }
+    ],
+    "name": "pickAll",
+    "sig": "[k] -> {k: v} -> {k: v}"
+  },
+  {
+    "args": [
+      {
+        "name": "pred",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "obj",
+        "types": [
+          "Object"
+        ]
+      }
+    ],
+    "name": "pickBy",
+    "sig": "(v, k -> Boolean) -> {k: v} -> {k: v}"
+  },
+  {
+    "args": [
+      {
+        "name": "p",
+        "types": [
+          "String"
+        ]
+      },
+      {
+        "name": "obj",
+        "types": [
+          "Object"
+        ]
+      }
+    ],
+    "name": "prop",
+    "sig": "s -> {s: a} -> a | Undefined"
+  },
+  {
+    "args": [
+      {
+        "name": "val",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "p",
+        "types": [
+          "String"
+        ]
+      },
+      {
+        "name": "obj",
+        "types": [
+          "Object"
+        ]
+      }
+    ],
+    "name": "propOr",
+    "sig": "a -> String -> Object -> a"
+  },
+  {
+    "args": [
+      {
+        "name": "ps",
+        "types": [
+          "Array"
+        ]
+      },
+      {
+        "name": "obj",
+        "types": [
+          "Object"
+        ]
+      }
+    ],
+    "name": "props",
+    "sig": "[k] -> {k: v} -> [v]"
+  },
+  {
+    "args": [
+      {
+        "name": "lens",
+        "types": [
+          "Lens"
+        ]
+      },
+      {
+        "name": "v",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "x",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "name": "set",
+    "sig": "Lens s a -> a -> s -> s"
+  },
+  {
+    "args": [
+      {
+        "name": "obj",
+        "types": [
+          "Object"
+        ]
+      }
+    ],
+    "name": "toPairs",
+    "sig": "{String: *} -> [[String,*]]"
+  },
+  {
+    "args": [
+      {
+        "name": "obj",
+        "types": [
+          "Object"
+        ]
+      }
+    ],
+    "name": "toPairsIn",
+    "sig": "{String: *} -> [[String,*]]"
+  },
+  {
+    "args": [
+      {
+        "name": "obj",
+        "types": [
+          "Object"
+        ]
+      }
+    ],
+    "name": "values",
+    "sig": "{k: v} -> [v]"
+  },
+  {
+    "args": [
+      {
+        "name": "obj",
+        "types": [
+          "Object"
+        ]
+      }
+    ],
+    "name": "valuesIn",
+    "sig": "{k: v} -> [v]"
+  },
+  {
+    "args": [
+      {
+        "name": "lens",
+        "types": [
+          "Lens"
+        ]
+      },
+      {
+        "name": "x",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "name": "view",
+    "sig": "Lens s a -> s -> a"
+  },
+  {
+    "args": [
+      {
+        "name": "spec",
+        "types": [
+          "Object"
+        ]
+      },
+      {
+        "name": "testObj",
+        "types": [
+          "Object"
+        ]
+      }
+    ],
+    "name": "where",
+    "sig": "{String: (* -> Boolean)} -> {String: *} -> Boolean"
+  },
+  {
+    "args": [
+      {
+        "name": "value",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "name": "clone",
+    "sig": "{*} -> {*}"
+  },
+  {
+    "args": [
+      {
+        "name": "key",
+        "types": [
+          "String"
+        ]
+      },
+      {
+        "name": "val",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "name": "createMapEntry",
+    "sig": "String -> a -> {String:a}"
+  },
+  {
+    "args": [
+      {
+        "name": "obj",
+        "types": [
+          "Object"
+        ]
+      }
+    ],
+    "name": "functions",
+    "sig": "{*} -> [String]"
+  },
+  {
+    "args": [
+      {
+        "name": "obj",
+        "types": [
+          "Object"
+        ]
+      }
+    ],
+    "name": "functionsIn",
+    "sig": "{*} -> [String]"
+  },
+  {
+    "args": [
+      {
+        "name": "obj",
+        "types": [
+          "Object"
+        ]
+      }
+    ],
+    "name": "invert",
+    "sig": "{s: x} -> {x: [ s, ... ]}"
+  },
+  {
+    "args": [
+      {
+        "name": "obj",
+        "types": [
+          "Object"
+        ]
+      }
+    ],
+    "name": "invertObj",
+    "sig": "{s: x} -> {x: s}"
+  },
+  {
+    "args": [
+      {
+        "name": "fn",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "obj",
+        "types": [
+          "Object"
+        ]
+      }
+    ],
+    "name": "mapObj",
+    "sig": "(v -> v) -> {k: v} -> {k: v}"
+  },
+  {
+    "args": [
+      {
+        "name": "fn",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "obj",
+        "types": [
+          "Object"
+        ]
+      }
+    ],
+    "name": "mapObjIndexed",
+    "sig": "(v, k, {k: v} -> v) -> {k: v} -> {k: v}"
+  },
+  {
+    "args": [
+      {
+        "name": "spec",
+        "types": [
+          "Object"
+        ]
+      },
+      {
+        "name": "testObj",
+        "types": [
+          "Object"
+        ]
+      }
+    ],
+    "name": "whereEq",
+    "sig": "{String: *} -> {String: *} -> Boolean"
+  },
+  {
+    "args": [
+      {
+        "name": "prop",
+        "types": [
+          "String"
+        ]
+      },
+      {
+        "name": "obj1",
+        "types": [
+          "Object"
+        ]
+      },
+      {
+        "name": "obj2",
+        "types": [
+          "Object"
+        ]
+      }
+    ],
+    "name": "eqProps",
+    "sig": "k -> {k: v} -> {k: v} -> Boolean"
+  },
+  {
+    "args": [
+      {
+        "name": "getter",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "setter",
+        "types": [
+          "Function"
+        ]
+      }
+    ],
+    "name": "lens",
+    "sig": "(s -> a) -> ((a, s) -> s) -> Lens s a"
+  },
+  {
+    "args": [
+      {
+        "name": "n",
+        "types": [
+          "Number"
+        ]
+      }
+    ],
+    "name": "lensIndex",
+    "sig": "Number -> Lens s a"
+  },
+  {
+    "args": [
+      {
+        "name": "k",
+        "types": [
+          "String"
+        ]
+      }
+    ],
+    "name": "lensProp",
+    "sig": "String -> Lens s a"
+  },
+  {
+    "args": [
+      {
+        "name": "props",
+        "types": [
+          "Array"
+        ]
+      },
+      {
+        "name": "objs",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "project",
+    "sig": "[k] -> [{k: v}] -> [{k: v}]"
+  },
+  {
+    "args": [
+      {
+        "name": "names",
+        "types": [
+          "Array"
+        ]
+      },
+      {
+        "name": "obj",
+        "types": [
+          "Object"
+        ]
+      }
+    ],
+    "name": "omit",
+    "sig": "[String] -> {String: *} -> {String: *}"
+  },
+  {
+    "args": [
+      {
+        "name": "fn",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "list",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "countBy",
+    "sig": "(a -> String) -> [a] -> {*}"
+  },
+  {
+    "args": [
+      {
+        "name": "pred",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "list1",
+        "types": [
+          "Array"
+        ]
+      },
+      {
+        "name": "list2",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "differenceWith",
+    "sig": "(a,a -> Boolean) -> [a] -> [a] -> [a]"
+  },
+  {
+    "args": [
+      {
+        "name": "a",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "b",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "name": "gt",
+    "sig": "Ord a => a -> a -> Boolean"
+  },
+  {
+    "args": [
+      {
+        "name": "a",
+        "types": [
+          "Number"
+        ]
+      },
+      {
+        "name": "b",
+        "types": [
+          "Number"
+        ]
+      }
+    ],
+    "name": "gte",
+    "sig": "Ord a => a -> a -> Boolean"
+  },
+  {
+    "args": [
+      {
+        "name": "a",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "b",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "name": "identical",
+    "sig": "a -> a -> Boolean"
+  },
+  {
+    "args": [
+      {
+        "name": "a",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "b",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "name": "lt",
+    "sig": "Ord a => a -> a -> Boolean"
+  },
+  {
+    "args": [
+      {
+        "name": "a",
+        "types": [
+          "Number"
+        ]
+      },
+      {
+        "name": "b",
+        "types": [
+          "Number"
+        ]
+      }
+    ],
+    "name": "lte",
+    "sig": "Ord a => a -> a -> Boolean"
+  },
+  {
+    "args": [
+      {
+        "name": "a",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "b",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "name": "max",
+    "sig": "Ord a => a -> a -> a"
+  },
+  {
+    "args": [
+      {
+        "name": "f",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "a",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "b",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "name": "maxBy",
+    "sig": "Ord b => (a -> b) -> a -> a -> a"
+  },
+  {
+    "args": [
+      {
+        "name": "a",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "b",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "name": "min",
+    "sig": "Ord a => a -> a -> a"
+  },
+  {
+    "args": [
+      {
+        "name": "f",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "a",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "b",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "name": "minBy",
+    "sig": "Ord b => (a -> b) -> a -> a -> a"
+  },
+  {
+    "args": [
+      {
+        "name": "fn",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "list",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "sortBy",
+    "sig": "Ord b => (a -> b) -> [a] -> [a]"
+  },
+  {
+    "args": [
+      {
+        "name": "a",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "b",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "name": "equals",
+    "sig": "a -> b -> Boolean"
+  },
+  {
+    "args": [
+      {
+        "name": "pred",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "list1",
+        "types": [
+          "Array"
+        ]
+      },
+      {
+        "name": "list2",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "intersectionWith",
+    "sig": "(a,a -> Boolean) -> [a] -> [a] -> [a]"
+  },
+  {
+    "args": [
+      {
+        "name": "path",
+        "types": [
+          "Array"
+        ]
+      },
+      {
+        "name": "val",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "obj",
+        "types": [
+          "Object"
+        ]
+      }
+    ],
+    "name": "pathEq",
+    "sig": "[String] -> * -> {String: *} -> Boolean"
+  },
+  {
+    "args": [
+      {
+        "name": "name",
+        "types": [
+          "String"
+        ]
+      },
+      {
+        "name": "val",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "obj",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "name": "propEq",
+    "sig": "String -> a -> Object -> Boolean"
+  },
+  {
+    "args": [
+      {
+        "name": "pred",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "list1",
+        "types": [
+          "Array"
+        ]
+      },
+      {
+        "name": "list2",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "unionWith",
+    "sig": "(a,a -> Boolean) -> [a] -> [a] -> [a]"
+  },
+  {
+    "args": [
+      {
+        "name": "f",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "x",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "y",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "name": "eqBy",
+    "sig": "(a -> b) -> a -> a -> Boolean"
+  },
+  {
+    "args": [
+      {
+        "name": "list1",
+        "types": [
+          "Array"
+        ]
+      },
+      {
+        "name": "list2",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "difference",
+    "sig": "[a] -> [a] -> [a]"
+  },
+  {
+    "args": [
+      {
+        "name": "list1",
+        "types": [
+          "Array"
+        ]
+      },
+      {
+        "name": "list2",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "intersection",
+    "sig": "[a] -> [a] -> [a]"
+  },
+  {
+    "args": [
+      {
+        "name": "as",
+        "types": [
+          "Array"
+        ]
+      },
+      {
+        "name": "bs",
+        "types": [
+          "Array"
+        ]
+      }
+    ],
+    "name": "union",
+    "sig": "[a] -> [a] -> [a]"
+  },
+  {
+    "args": [
+      {
+        "name": "rx",
+        "types": [
+          "RegExp"
+        ]
+      },
+      {
+        "name": "str",
+        "types": [
+          "String"
+        ]
+      }
+    ],
+    "name": "match",
+    "sig": "RegExp -> String -> [String | Undefined]"
+  },
+  {
+    "args": [
+      {
+        "name": "pattern",
+        "types": [
+          "RegExp",
+          "String"
+        ]
+      },
+      {
+        "name": "replacement",
+        "types": [
+          "String"
+        ]
+      },
+      {
+        "name": "str",
+        "types": [
+          "String"
+        ]
+      }
+    ],
+    "name": "replace",
+    "sig": "RegExp|String -> String -> String -> String"
+  },
+  {
+    "args": [
+      {
+        "name": "str",
+        "types": [
+          "String"
+        ]
+      }
+    ],
+    "name": "trim",
+    "sig": "String -> String"
+  },
+  {
+    "args": [
+      {
+        "name": "val",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "name": "toString",
+    "sig": "* -> String"
+  },
+  {
+    "args": [
+      {
+        "name": "sep",
+        "types": [
+          "String",
+          "RegExp"
+        ]
+      },
+      {
+        "name": "str",
+        "types": [
+          "String"
+        ]
+      }
+    ],
+    "name": "split",
+    "sig": "(String | RegExp) -> String -> [String]"
+  },
+  {
+    "args": [
+      {
+        "name": "pattern",
+        "types": [
+          "RegExp"
+        ]
+      },
+      {
+        "name": "str",
+        "types": [
+          "String"
+        ]
+      }
+    ],
+    "name": "test",
+    "sig": "RegExp -> String -> Boolean"
+  },
+  {
+    "args": [
+      {
+        "name": "str",
+        "types": [
+          "String"
+        ]
+      }
+    ],
+    "name": "toLower",
+    "sig": "String -> String"
+  },
+  {
+    "args": [
+      {
+        "name": "str",
+        "types": [
+          "String"
+        ]
+      }
+    ],
+    "name": "toUpper",
+    "sig": "String -> String"
+  },
+  {
+    "args": [
+      {
+        "name": "ctor",
+        "types": [
+          "Object"
+        ]
+      },
+      {
+        "name": "val",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "name": "is",
+    "sig": "(* -> {*}) -> a -> Boolean"
+  },
+  {
+    "args": [
+      {
+        "name": "x",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "name": "isArrayLike",
+    "sig": "* -> Boolean"
+  },
+  {
+    "args": [
+      {
+        "name": "x",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "name": "isNil",
+    "sig": "* -> Boolean"
+  },
+  {
+    "args": [
+      {
+        "name": "val",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "name": "type",
+    "sig": "(* -> {*}) -> String"
+  },
+  {
+    "args": [
+      {
+        "name": "type",
+        "types": [
+          "Function"
+        ]
+      },
+      {
+        "name": "name",
+        "types": [
+          "String"
+        ]
+      },
+      {
+        "name": "obj",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "name": "propIs",
+    "sig": "Type -> String -> Object -> Boolean"
+  }
+]
