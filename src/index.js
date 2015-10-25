@@ -1,41 +1,40 @@
-const { __, any, complement, concat, curry, curryN, equals, filter, find, head, identity, ifElse, join, map, mapObjIndexed, nAry, not, pipe, prop, propEq, tail, toString, toUpper, type } = require('ramda')
+const { __, any, anyPass, concat, curry, equals, find, head, identity, ifElse, invoker, join, map, mapObjIndexed, not, pipe, prop, propEq, reject, tail, toString, toUpper, type } = require('ramda')
 const mainR = require.main.require('ramda')
 const path = require('path')
 const docs = require(path.join(__dirname, '..', 'ramda.json'))
 const ccurryN = require('./ccurryN')
 const nthStr = require('./nth-str')
 const formatHeader = require('./format-header')
+const formatErrContext = require('./format-err-context')
+const isMyCallSite = require('./is-my-call-site');
+
 const { cyan } = require('chalk')
-const callsites = require('error-callsites')
 const stackChain = require('stack-chain')
 const debug = require('debug')('ramda-t')
-
-const startsWith = curry((x, str) => str.indexOf(x) === 0)
-const pathInside = curryN(2, pipe(nAry(2, path.relative), startsWith('..'), not))
-const notMyCallSite = complement((s) => pathInside(PACKAGE_ROOT, s.getFileName()))
-const firstOuterCallSite = pipe(callsites, find(notMyCallSite))
 
 const PACKAGE_ROOT = path.resolve(__dirname, '..')
 const when = ifElse(__, __, identity)
 const isFunction = pipe(type, equals('Function'))
 
 const quote = (x) => `‘${x}’`
-const lines = join('\n')
-const words = join(' ')
+const unlines = join('\n')
+const unwords = join(' ')
 const capitalize = (str) =>
   concat(toUpper(head(str)), tail(str))
 
-const formatWarning = (fn, idx, val) =>
-  lines([
+const formatWarning = (fn, idx, val, err) => {
+  return unlines([
     formatHeader('Ramda Type Error') + '\n',
-    words([ ' ', capitalize(nthStr[idx]), 'argument to', quote(fn.name),
+    unlines(formatErrContext(err)) + '\n',
+    unwords([ ' ', capitalize(nthStr[idx]), 'argument to', quote(fn.name),
             'was', cyan.bold(type(val)), 'instead of',
             join(' or ', map(cyan.bold, fn.args[idx].types)) ]) + '\n',
-    words([ ' ', fn.name, '::', fn.sig ]) + '\n',
-    words([ ' ', `http://ramdajs.com/docs/#${fn.name}` ]) + '\n'
+    unwords([ ' ', fn.name, '::', fn.sig ]) + '\n',
+    unwords([ ' ', `http://ramdajs.com/docs/#${fn.name}` ]) + '\n'
   ])
+}
 
-const formatTypeErrorMessage = (fn, idx, val) => words([
+const formatTypeErrorMessage = (fn, idx, val) => unwords([
   quote(fn.name), 'requires a value of type', join(' or ', fn.args[idx].types),
   'as its', nthStr[idx], 'argument; received', toString(val)
 ])
@@ -62,8 +61,8 @@ const check = curry((fnName, idx, val) => {
     return debug(`warning: couldn't find documentation for ${nthStr[idx]} argument of ${quote(fnName)}`)
 
   if (not(validArgType(val, arg)) && not(hasMethod(fnName, val))) {
-    console.error(formatWarning(fn, idx, val))
     const err = new TypeError(formatTypeErrorMessage(fn, idx, val))
+    console.error(formatWarning(fn, idx, val, err))
     throw err
   }
 })
@@ -74,8 +73,16 @@ const curryCheckFn = (fn, name) =>
 module.exports = mapObjIndexed(when(isFunction, curryCheckFn), mainR)
 module.exports.__ = mainR.__ // ^ loses this
 
+Error.stackTraceLimit = Infinity
+
+const getFileName = invoker(0, 'getFileName')
+const isStackNoise = anyPass([
+  isMyCallSite,
+  pipe(getFileName, equals('module.js'))
+])
+
 stackChain.filter.attach((error, frames) =>
-  filter(notMyCallSite, frames))
+  reject(isStackNoise, frames))
 
 debug('ramda-t package root', PACKAGE_ROOT)
 debug('extending ramda version', require.main.require('ramda/package.json').version)
