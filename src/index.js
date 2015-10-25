@@ -8,6 +8,7 @@ const formatHeader = require('./format-header')
 const { cyan } = require('chalk')
 const callsites = require('error-callsites')
 const stackChain = require('stack-chain')
+const debug = require('debug')('ramda-t')
 
 const startsWith = curry((x, str) => str.indexOf(x) === 0)
 const pathInside = curryN(2, pipe(nAry(2, path.relative), startsWith('..'), not))
@@ -53,11 +54,12 @@ const validArgType = (val, arg) =>
 const hasMethod = pipe(prop, type, equals('Function'))
 
 const check = curry((fnName, idx, val) => {
+  debug('check', { fnName, idx, val })
   const fn = find(propEq('name', fnName), docs)
   const arg = getArg(fn, idx)
 
   if (arg == null)
-    return console.error(`warning: couldn't find documentation for ${nthStr[idx]} argument of ${quote(fnName)}`)
+    return debug(`warning: couldn't find documentation for ${nthStr[idx]} argument of ${quote(fnName)}`)
 
   if (not(validArgType(val, arg)) && not(hasMethod(fnName, val))) {
     console.error(formatWarning(fn, idx, val))
@@ -74,3 +76,6 @@ module.exports.__ = mainR.__ // ^ loses this
 
 stackChain.filter.attach((error, frames) =>
   filter(notMyCallSite, frames))
+
+debug('ramda-t package root', PACKAGE_ROOT)
+debug('extending ramda version', require.main.require('ramda/package.json').version)
