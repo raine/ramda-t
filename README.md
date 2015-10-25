@@ -2,6 +2,8 @@
 
 Experiment: Primitive, JSDoc-assisted type checking for Ramda
 
+<img src="https://raw.githubusercontent.com/raine/ramda-t/media/img.png" width="458" height="315">
+
 ## usage
 
 1. `npm install ramda-t` in a project that uses Ramda
