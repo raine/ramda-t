@@ -21,6 +21,14 @@ doubleAll('foo');
 
 <img src="https://raw.githubusercontent.com/raine/ramda-t/media/example.png" width="416" height="315">
 
+## debug output
+
+Set `DEBUG` environment variable to `ramda-t`.
+
+```
+DEBUG=ramda-t node index.js
+```
+
 ## caveats
 
 - Relies on JSDoc `@param` annotations to be correct.
