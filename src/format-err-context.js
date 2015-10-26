@@ -24,10 +24,12 @@ const aroundIdx = curry((c, n, arr) =>
 const readCallSiteFile =
   pipe(getFileName, readFileUtf8)
 
+const cardinal = require('cardinal')
 const readCallSiteContext = (site) => {
   const idx = site.getLineNumber() - 1
-  const file = readCallSiteFile(site)
-  const fileLines = indexList(lines(file))
+  const content = readCallSiteFile(site)
+  const highlighted = cardinal.highlight(content, { linenos: true })
+  const fileLines = indexList(lines(highlighted))
   return pickIndexes(aroundIdx(1, idx, fileLines), fileLines)
 }
 
@@ -36,7 +38,7 @@ const formatLines = (ls, targetLineIdx) =>
     const isTargetLine = targetLineIdx === lineIdx
     const prefix = isTargetLine ? '>' : ' '
     return unwords([
-      ' ', prefix, lineIdx + 1, '|', line
+      ' ', prefix, line
     ])
   }, ls)
 

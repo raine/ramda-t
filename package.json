@@ -15,6 +15,7 @@
     "babel-plugin-dedent": "^1.1.0"
   },
   "dependencies": {
+    "cardinal": "^0.5.0",
     "chalk": "^1.1.1",
     "concat-stream": "^1.5.1",
     "debug": "^2.2.0",
