@@ -36,7 +36,7 @@ const check = curry((fnName, idx, val) => {
   if (arg == null)
     return debug(`warning: couldn't find documentation for ${nthStr(idx)} argument of ${quote(fnName)}`)
 
-  if (not(validArgType(val, arg)) && not(hasMethod(fnName, val))) {
+  if (not( validArgType(val, arg) || (val != null && hasMethod(fnName, val)) )) {
     const err = new TypeError(formatTypeErrorMessage(fn, idx, val))
     console.error(formatTypeError(fn, idx, val, err))
     throw err
