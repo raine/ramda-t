@@ -2,12 +2,21 @@
 
 Experiment: Primitive, JSDoc-assisted type checking for Ramda
 
-<img src="https://raw.githubusercontent.com/raine/ramda-t/media/img.png" width="458" height="315">
-
 ## usage
 
 1. `npm install ramda-t` in a project that uses Ramda
 2. Use `require('ramda-t')` in place of `require('ramda')`
+
+## example
+
+```js
+var R = require('ramda-t');
+
+var doubleAll = R.map(R.multiply(2));
+doubleAll('foo');
+```
+
+![demo](https://raw.githubusercontent.com/raine/ramda-t/media/img.png)
 
 ## caveats
 
