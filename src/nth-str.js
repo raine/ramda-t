@@ -1,4 +1,6 @@
-module.exports = {
+const { __, prop } = require('ramda')
+
+module.exports = prop(__, {
   0: 'first',
   1: 'second',
   2: 'third',
@@ -7,4 +9,4 @@ module.exports = {
   5: 'sixth',
   6: 'seventh',
   7: 'eighth'
-}
+})

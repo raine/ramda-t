@@ -11,6 +11,7 @@ const filterIndexed = addIndex(filter)
 
 const firstOuterCallSite =
   pipe(callsites, find(complement(isMyCallSite)))
+
 const readFileUtf8 = curry(fs.readFileSync)(__, 'utf8')
 const getFileName = invoker(0, 'getFileName')
 const pickIndexes = curry((idxs, arr) =>
