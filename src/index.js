@@ -1,11 +1,11 @@
 const { __, any, anyPass, curry, equals, find, identity, ifElse, invoker, mapObjIndexed, not, pipe, prop, propEq, reject, type } = require('ramda')
-const mainR = require.main.require('ramda')
+const mainRamda = require.main.require('ramda')
 const path = require('path')
 const docs = require(path.join(__dirname, '..', 'ramda.json'))
 const ccurryN = require('./ccurryN')
 const nthStr = require('./nth-str')
 const isMyCallSite = require('./is-my-call-site');
-const formatWarning = require('./format-warning');
+const formatTypeError = require('./format-type-error');
 const formatTypeErrorMessage = require('./format-type-error-message')
 const stackChain = require('stack-chain')
 const debug = require('debug')('ramda-t')
@@ -38,7 +38,7 @@ const check = curry((fnName, idx, val) => {
 
   if (not(validArgType(val, arg)) && not(hasMethod(fnName, val))) {
     const err = new TypeError(formatTypeErrorMessage(fn, idx, val))
-    console.error(formatWarning(fn, idx, val, err))
+    console.error(formatTypeError(fn, idx, val, err))
     throw err
   }
 })
@@ -46,8 +46,8 @@ const check = curry((fnName, idx, val) => {
 const wrapWithCheck = (fn, name) =>
   ccurryN(check(name), fn.length, [], fn)
 
-module.exports = mapObjIndexed(when(isFunction, wrapWithCheck), mainR)
-module.exports.__ = mainR.__ // ^ loses this
+module.exports = mapObjIndexed(when(isFunction, wrapWithCheck), mainRamda)
+module.exports.__ = mainRamda.__ // ^ loses this
 
 Error.stackTraceLimit = Infinity
 
