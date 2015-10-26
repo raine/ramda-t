@@ -15,7 +15,7 @@ const when = ifElse(__, __, identity)
 const isFunction = pipe(type, equals('Function'))
 const quote = (x) => `‘${x}’`
 
-const hasMethod = pipe(prop, type, equals('Function'))
+const hasMethod = pipe(prop, isFunction)
 const isVariadic = propEq('variable', true)
 const getArg = (fn, idx) =>
   fn.args[idx] || find(isVariadic, fn.args)
