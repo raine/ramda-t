@@ -9,7 +9,7 @@ application.
 ## usage
 
 1. `npm install ramda-t` in a project that uses Ramda.
-2. Require `ramda-t` in place of `ramda`
+2. Require `ramda-t` in place of `ramda`.
 
 ## example
 
@@ -25,7 +25,7 @@ doubleAll('foo');
 
 Set `DEBUG` environment variable to `ramda-t`.
 
-```
+```sh
 DEBUG=ramda-t node index.js
 ```
 
@@ -35,4 +35,4 @@ DEBUG=ramda-t node index.js
 - `R.map`'s second argument is type of `Array`. Becomes an issue when `R.map`
   is used to dispatch. Dispatched arguments are difficult to parse from JSDoc
   annotations because they're part of the description. Workaround: Check if
-  value has a method of the name of the function.
+  value has a method by the name of the function.
