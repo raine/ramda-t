@@ -49,8 +49,6 @@ const wrapWithCheck = (fn, name) =>
 module.exports = mapObjIndexed(when(isFunction, wrapWithCheck), mainRamda)
 module.exports.__ = mainRamda.__ // ^ loses this
 
-Error.stackTraceLimit = Infinity
-
 const getFileName = invoker(0, 'getFileName')
 const isStackNoise = anyPass([
   isMyCallSite,
