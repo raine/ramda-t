@@ -1,15 +1,6 @@
 var _arity = require('./arity');
 
-/**
- * Internal curryN function.
- *
- * @private
- * @category Function
- * @param {Number} length The arity of the curried function.
- * @return {array} An array of arguments received thus far.
- * @param {Function} fn The function to curry.
- */
-module.exports = function _curryN(check, length, received, fn) {
+module.exports = function _curryN(resultHook, length, received, fn) {
   return function() {
     var combined = [];
     var argsIdx = 0;
@@ -29,11 +20,11 @@ module.exports = function _curryN(check, length, received, fn) {
 
       combined[combinedIdx] = result;
       if (result == null || result['@@functional/placeholder'] !== true) {
-        check(combinedIdx, result)
+        resultHook(combinedIdx, result)
         left -= 1;
       }
       combinedIdx += 1;
     }
-    return left <= 0 ? fn.apply(this, combined) : _arity(left, _curryN(check, length, combined, fn));
+    return left <= 0 ? fn.apply(this, combined) : _arity(left, _curryN(resultHook, length, combined, fn));
   };
 };

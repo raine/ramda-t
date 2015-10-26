@@ -2,7 +2,7 @@ const { __, any, anyPass, curry, equals, find, identity, ifElse, invoker, mapObj
 const mainRamda = require.main.require('ramda')
 const path = require('path')
 const docs = require(path.join(__dirname, '..', 'ramda.json'))
-const ccurryN = require('./ccurryN')
+const specialCurryN = require('./special-curryN')
 const nthStr = require('./nth-str')
 const isMyCallSite = require('./is-my-call-site');
 const formatTypeError = require('./format-type-error');
@@ -44,7 +44,7 @@ const check = curry((fnName, idx, val) => {
 })
 
 const wrapWithCheck = (fn, name) =>
-  ccurryN(check(name), fn.length, [], fn)
+  specialCurryN(check(name), fn.length, [], fn)
 
 module.exports = mapObjIndexed(when(isFunction, wrapWithCheck), mainRamda)
 module.exports.__ = mainRamda.__ // ^ loses this
