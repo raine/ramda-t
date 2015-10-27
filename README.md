@@ -1,10 +1,10 @@
 # ramda-t
 
-Experiment: Primitive, JSDoc-assisted runtime type checking for Ramda
+Experiment: Primitive, JSDoc-assisted runtime type checking for [Ramda][ramda]
 
-It reads JSDoc documentation from the project's Ramda and uses the functions'
-`@param` annotations to determine valid argument types in function
-application.
+It reads JSDoc documentation from the project's Ramda source file and uses
+the functions' `@param` annotations to determine valid argument types in
+function application.
 
 ## usage
 
@@ -36,3 +36,5 @@ DEBUG=ramda-t node index.js
   is used to dispatch. Dispatched arguments are difficult to parse from JSDoc
   annotations because they're part of the description. Workaround: Check if
   value has a method by the name of the function.
+
+[ramda]: http://ramdajs.com
