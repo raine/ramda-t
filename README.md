@@ -21,13 +21,10 @@ doubleAll('foo');
 
 <img src="https://raw.githubusercontent.com/raine/ramda-t/media/example.png" width="416" height="315">
 
-## debug output
+## unsolved problems
 
-Set `DEBUG` environment variable to `ramda-t`.
-
-```sh
-DEBUG=ramda-t node index.js
-```
+- [ ] How to smoothly make `ramda-t` part of development process but drop it
+      for production use?
 
 ## caveats
 
@@ -36,5 +33,13 @@ DEBUG=ramda-t node index.js
   is used to dispatch. Dispatched arguments are difficult to parse from JSDoc
   annotations because they're part of the description. Workaround: Check if
   value has a method by the name of the function.
+
+## debug output
+
+Set `DEBUG` environment variable to `ramda-t`.
+
+```sh
+DEBUG=ramda-t node index.js
+```
 
 [ramda]: http://ramdajs.com
