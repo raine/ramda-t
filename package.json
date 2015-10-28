@@ -9,6 +9,10 @@
   },
   "keywords": [],
   "author": "Raine Virta <raine.virta@gmail.com>",
+  "repository": "raine/ramda-t",
+  "keywords": [
+    "repl"
+  ],
   "license": "ISC",
   "devDependencies": {
     "babel": "^5.8.23",
