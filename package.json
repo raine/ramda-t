@@ -1,18 +1,17 @@
 {
   "name": "ramda-t",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "./bin/generate-json ../ramda/dist/ramda.js ramda.json || exit 0"
   },
-  "keywords": [],
-  "author": "Raine Virta <raine.virta@gmail.com>",
-  "repository": "raine/ramda-t",
   "keywords": [
     "repl"
   ],
+  "author": "Raine Virta <raine.virta@gmail.com>",
+  "repository": "raine/ramda-t",
   "license": "ISC",
   "devDependencies": {
     "babel": "^5.8.23",
