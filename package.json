@@ -8,7 +8,7 @@
     "postinstall": "./bin/generate-json ../ramda/dist/ramda.js ramda.json || exit 0"
   },
   "keywords": [
-    "repl"
+    "ramda"
   ],
   "author": "Raine Virta <raine.virta@gmail.com>",
   "repository": "raine/ramda-t",
