@@ -1,6 +1,6 @@
 const { join, map, type } = require('ramda')
 const { cyan } = require('chalk')
-const formatErrContext = require('./format-err-context')
+const formatErrorContext = require('./format-error-context')
 const formatHeader = require('./format-header')
 const capitalize = require('./capitalize');
 const nthStr = require('./nth-str')
@@ -14,7 +14,7 @@ const formatWarning = (fn, idx, val, err) =>
   unlines([
     formatHeader('Ramda Type Error'),
     EMPTY,
-    unlines(formatErrContext(err)),
+    unlines(formatErrorContext(err)),
     EMPTY,
     unwords([
       ' ', capitalize(nthStr(idx)), 'argument to', quote(fn.name),
