@@ -1,4 +1,4 @@
-const { __, any, anyPass, curry, equals, find, identity, ifElse, invoker, mapObjIndexed, not, pipe, prop, propEq, reject, toString, type } = require('ramda')
+const { __, toString, any, anyPass, curry, equals, find, identity, ifElse, invoker, mapObjIndexed, not, pipe, prop, propEq, reject, type, useWith } = require('ramda')
 const path = require('path')
 const specialCurryN = require('./special-curryN')
 const nthStr = require('./nth-str')
@@ -8,32 +8,22 @@ const formatTypeErrorMessage = require('./format-type-error-message')
 const stackChain = require('stack-chain')
 const debug = require('debug')('ramda-t')
 
-const PACKAGE_ROOT = path.resolve(__dirname, '..')
-const JSON_DOCS = path.join(PACKAGE_ROOT, 'ramda.json')
-const docs = require(JSON_DOCS)
 const when = ifElse(__, __, identity)
 const isFunction = pipe(type, equals('Function'))
 const quote = (x) => `‘${x}’`
-const fallback = curry((def, fn, val) => {
-  try {
-    return fn(val);
-  } catch(e) {
-    return def(val);
-  }
-});
-
 const hasMethod = pipe(prop, isFunction)
 const isVariadic = propEq('variable', true)
+const ANY_TYPE = '*'
+
 const getArg = (fn, idx) =>
   fn.args[idx] || find(isVariadic, fn.args)
 
-const ANY_TYPE = '*'
+//    validType :: * -> String -> Boolean
 const validType = curry((val, t) =>
   t === ANY_TYPE || type(val) === t)
 
-//    validArgType :: * -> Object(Arg) -> Boolean
-const validArgType = (val, arg) =>
-  any(validType(val), arg.types)
+//    anyValidType :: * -> Object -> Boolean
+const anyValidType = useWith(any, [ validType, prop('types') ])
 
 const check = curry((fnName, idx, val) => {
   const fn = find(propEq('name', fnName), docs)
@@ -41,22 +31,26 @@ const check = curry((fnName, idx, val) => {
   debug(`checking ${fnName} idx=${idx} arg=${toString(arg)} val=${toString(val)}`)
 
   if (arg == null)
-    return debug(`warning: couldn't find documentation for ${nthStr(idx)} argument of ${quote(fnName)}`)
+    return debug(`warning: no doc for ${nthStr(idx)} argument of ${quote(fnName)}`)
 
-  if (not( validArgType(val, arg) || (val != null && hasMethod(fnName, val)) )) {
+  if (not( anyValidType(val, arg) || (val != null && hasMethod(fnName, val)) )) {
     const err = new TypeError(formatTypeErrorMessage(fn, idx, val))
     console.error(formatTypeError(fn, idx, val, err))
     throw err
   }
 })
 
-const wrapWithCheck = (fn, name) =>
+//    wrapFunction :: Function -> String -> Function
+const wrapFunction = (fn, name) =>
   specialCurryN(check(name), fn.length, [], fn)
 
-const mainRamda = fallback(require, require.main.require, 'ramda')
-const mainRamdaVersion = fallback(require, require.main.require, 'ramda/package.json').version
+const mainRamda = require.main.require('ramda')
+const mainRamdaVersion = require.main.require('ramda/package.json').version
+const PACKAGE_ROOT = path.resolve(__dirname, '..')
+const JSON_DOCS = path.join(PACKAGE_ROOT, 'ramda.json')
+const docs = require(JSON_DOCS)
 
-module.exports = mapObjIndexed(when(isFunction, wrapWithCheck), mainRamda)
+module.exports = mapObjIndexed(when(isFunction, wrapFunction), mainRamda)
 module.exports.__ = mainRamda.__ // ^ loses this
 
 const getFileName = invoker(0, 'getFileName')
