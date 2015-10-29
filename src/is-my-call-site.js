@@ -1,7 +1,6 @@
 const path = require('path')
-const PACKAGE_ROOT = path.resolve(__dirname, '..')
 const pathInside = require('./path-inside')
-const { not } = require('ramda')
+const PACKAGE_ROOT = path.resolve(__dirname, '..')
 
-module.exports = (s) =>
-  pathInside(PACKAGE_ROOT, s.getFileName())
+module.exports = (site) =>
+  pathInside(PACKAGE_ROOT, site.getFileName())
