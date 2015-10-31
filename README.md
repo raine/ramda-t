@@ -21,10 +21,11 @@ doubleAll('foo');
 
 <img src="https://raw.githubusercontent.com/raine/ramda-t/media/example.png" width="416" height="315">
 
-## unsolved problems
+## problems
 
 - [ ] How to smoothly make `ramda-t` part of development process but drop it
       for production use?
+- [x] ~~Lens value types are documented as `Lens`, despite being type of `Function`~~
 
 ## caveats
 
