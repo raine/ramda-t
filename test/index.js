@@ -15,6 +15,7 @@ const baseUI = {
 
 const wrap = wrapRamda(baseUI)
 
+// TODO: elaborate thrown error's messages
 it('handles any type (*)', () => {
   const docs = [{
     args: [ { types: [ '*' ] } ],
@@ -100,4 +101,34 @@ it('calls passed print function on invalid type', () => {
   const { head } = wrapRamda(ui, docs, R)
   throws(() => head(undefined))
   sinon.assert.called(print)
+})
+
+it('sets @@type property for functions that return a Lens', () => {
+  const docs = [{
+    args: [ { types: [ 'Number' ] } ],
+    name: 'lensIndex',
+    returns: ['Lens']
+  }]
+
+  const { lensIndex } = wrap(docs, R)
+  eq(lensIndex(0)['@@type'], 'ramda/Lens')
+})
+
+it('handles Lens type (which really is a function) as argument', () => {
+  const docs = [{
+    args: [ { types: [ 'Number' ] } ],
+    name: 'lensIndex',
+    returns: ['Lens']
+  }, {
+    args: [
+      { types: [ 'Lens' ] } ,
+      { types: [ '*' ] }
+    ],
+    name: 'view',
+    returns: ['*']
+  }]
+
+  const { lensIndex, view } = wrap(docs, R)
+  const headLens = lensIndex(0)
+  eq(view(headLens, [1, 2, 3]), 1)
 })

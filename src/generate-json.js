@@ -24,6 +24,12 @@ const argsFromParams =
                                           map(capitalize))),
                 pick(['name', 'types', 'variable']))))
 
+const returnsFromParams =
+  pipe(propOr([], 'returns'),
+       head,
+       path(['type', 'names']),
+       map(capitalize))
+
 const sigFromTags =
   pipe(prop('customTags'),
        find(propEq('tag', 'sig')),
@@ -33,8 +39,9 @@ const sigFromTags =
 const makeDocs =
   pipe(filter(isRamdaFunction),
        map(pipe(propFromObj('sig', sigFromTags),
-                propFromObj('args', argsFromParams))),
-       project([ 'args', 'name', 'sig', 'description' ]))
+                propFromObj('args', argsFromParams),
+                propFromObj('returns', returnsFromParams))),
+       project([ 'args', 'name', 'returns', 'sig', 'description' ]))
 
 const writeFile = curry(fs.writeFileSync)
 

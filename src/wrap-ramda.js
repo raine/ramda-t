@@ -1,4 +1,4 @@
-const { __, toString, any, curry, equals, find, identity, ifElse, mapObjIndexed, not, pipe, prop, propEq, type, useWith } = require('ramda')
+const { __, toString, any, curry, equals, find, identity, ifElse, mapObjIndexed, not, pipe, prop, propEq, replace, type, useWith } = require('ramda')
 const specialCurryN = require('./special-curryN')
 const debug = require('debug')('ramda-t')
 const nthStr = require('./nth-str')
@@ -13,10 +13,17 @@ const quote = (x) => `‘${x}’`
 const hasMethod = pipe(prop, isFunction)
 const isVariadic = propEq('variable', true)
 const getArg = (fn, idx) => fn.args[idx] || find(isVariadic, fn.args)
+const remove = replace(__, '')
+
+//    _type :: * -> String
+const _type = (x) =>
+  x != null && x['@@type']
+    ? remove('ramda/', x['@@type'])
+    : type(x)
 
 //    typeEqualOrAny :: * -> String -> Boolean
 const typeEqualOrAny = curry((val, t) =>
-  t === ANY_TYPE || type(val) === t)
+  t === ANY_TYPE || _type(val) === t)
 
 //    anyValidType :: * -> [String] -> Boolean
 const anyValidType = useWith(any, [ typeEqualOrAny, identity ])
@@ -43,6 +50,19 @@ const validate = curry((ui, fdoc, idx, val) => {
   }
 })
 
+
+//    setType :: (String, *) -> *
+const setType = (type, val) =>
+  Object.defineProperty(val, '@@type', {
+    enumerable: false,
+    value: `ramda/${type}`
+  })
+
+//    mapReturnValue :: Object -> * -> *
+const mapReturnValue = curry((fdoc, val) =>
+  propEq('returns', ['Lens'], fdoc) ? setType('Lens', val)
+                                    : val)
+
 //    wrapFunction :: UI -> [Object] -> Function -> String -> Function
 const wrapFunction = curry((ui, docs, fn, name) => {
   const fdoc = find(propEq('name', name), docs)
@@ -50,7 +70,13 @@ const wrapFunction = curry((ui, docs, fn, name) => {
     debug(`warning: no doc for function ${quote(name)}`)
     return fn
   } else {
-    return specialCurryN(validate(ui, fdoc), fn.length, [], fn)
+    return specialCurryN(
+      validate(ui, fdoc),
+      mapReturnValue(fdoc),
+      fn.length,
+      [],
+      fn
+    )
   }
 })
 
