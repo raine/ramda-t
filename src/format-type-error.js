@@ -1,4 +1,4 @@
-const { curry, invoker, join, map, type } = require('ramda')
+const { curry, intersperse, invoker, join, map, type } = require('ramda')
 const { cyan } = require('chalk')
 const path = require('path')
 const firstOuterCallSite = require('./first-outer-call-site')
@@ -26,22 +26,17 @@ const formatTypeError = (ui, fn, idx, val, err) => {
   const header = formatHeader(columns, 'Ramda Type Error', S.fromMaybe('', relSitePath))
   const errLines = unlines(S.fromMaybe([], map(renderCallSite, site)))
 
-  return unlines([
+  return unlines(intersperse(EMPTY, [
     header,
-    EMPTY,
     errLines,
-    EMPTY,
     unwords([
       ' ', capitalize(nthStr(idx)), 'argument to', quote(fn.name),
       'was', cyan.bold(type(val)), 'instead of',
       join(' or ', map(cyan.bold, fn.args[idx].types))
     ]),
-    EMPTY,
     unwords([ ' ', fn.name, '::', fn.sig ]),
-    EMPTY,
-    unwords([ ' ', `http://ramdajs.com/docs/#${fn.name}` ]),
-    EMPTY
-  ])
+    unwords([ ' ', `http://ramdajs.com/docs/#${fn.name}` ])
+  ])) + '\n'
 }
 
 module.exports = formatTypeError
