@@ -12,7 +12,12 @@ const PACKAGE_ROOT = path.resolve(__dirname, '..')
 const JSON_DOCS = path.join(PACKAGE_ROOT, 'ramda.json')
 const docs = require(JSON_DOCS)
 
-module.exports = wrapRamda(writeLn(process.stderr), docs, mainRamda)
+const ui = {
+  print: writeLn(process.stderr),
+  process
+}
+
+module.exports = wrapRamda(ui, docs, mainRamda)
 module.exports.__ = mainRamda.__ // ^ loses this
 
 const getFileName = invoker(0, 'getFileName')

@@ -10,9 +10,9 @@ const unwords = join(' ')
 const quote = (x) => `‘${x}’`
 const EMPTY = ''
 
-const formatWarning = (fn, idx, val, err) =>
+const formatTypeError = (columns, fn, idx, val, err) =>
   unlines([
-    formatHeader('Ramda Type Error'),
+    formatHeader(columns, 'Ramda Type Error'),
     EMPTY,
     unlines(formatErrorContext(err)),
     EMPTY,
@@ -29,4 +29,4 @@ const formatWarning = (fn, idx, val, err) =>
   ])
 
 
-module.exports = formatWarning
+module.exports = formatTypeError

@@ -1,11 +1,16 @@
-const { add, identity, multiply } = require('ramda')
+const { add, assoc, identity, multiply } = require('ramda')
 const R = require('ramda')
 const { eq, assert } = require('./utils')
 const { doesNotThrow, throws } = assert
 const sinon = require('sinon')
-const wrap = require('../src/wrap-ramda')
-
 const noop = () => {}
+const wrapRamda = require('../src/wrap-ramda')
+const baseUI = {
+  process: { stdout: { columns: 30 } },
+  print: noop
+}
+
+const wrap = wrapRamda(baseUI)
 
 it('handles any type (*)', () => {
   const docs = [{
@@ -13,7 +18,7 @@ it('handles any type (*)', () => {
     name: 'empty'
   }]
   
-  const { empty } = wrap(noop, docs, R)
+  const { empty } = wrap(docs, R)
 
   doesNotThrow(() => {
     empty('foo')
@@ -28,7 +33,7 @@ it('handles multiple types', () => {
     name: 'reverse'
   }]
   
-  const { reverse } = wrap(noop, docs, R)
+  const { reverse } = wrap(docs, R)
 
   doesNotThrow(() => {
     reverse('foo')
@@ -47,7 +52,7 @@ it('handles variadic functions', () => {
     name: 'pipe'
   }]
   
-  const { pipe } = wrap(noop, docs, R)
+  const { pipe } = wrap(docs, R)
 
   doesNotThrow(() => {
     eq(pipe(add(1), multiply(2))(1), 4)
@@ -65,7 +70,7 @@ it('checks if a value is dispatchable if type does not match', () => {
     name: 'map'
   }]
   
-  const { map } = wrap(noop, docs, R)
+  const { map } = wrap(docs, R)
 
   doesNotThrow(() => map(identity, { map: noop }))
   throws(() => map(identity, { foo: noop }))
@@ -77,7 +82,7 @@ it('throws when passing an undefined to trigger invalid type', () => {
     name: 'head'
   }]
   
-  const { head } = wrap(noop, docs, R)
+  const { head } = wrap(docs, R)
   throws(() => head(undefined))
 })
 
@@ -88,8 +93,8 @@ it('calls passed print function on invalid type', () => {
   }]
 
   const print = sinon.spy()
-  const { head } = wrap(print, docs, R)
-
+  const ui = assoc('print', print, baseUI)
+  const { head } = wrapRamda(ui, docs, R)
   throws(() => head(undefined))
   sinon.assert.called(print)
 })

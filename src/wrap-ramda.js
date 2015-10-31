@@ -28,8 +28,8 @@ const isValidType = (fname, types, val) => {
   else                                           return false
 }
 
-//    validate :: Function -> Object -> Number -> * -> ()
-const validate = curry((print, fdoc, idx, val) => {
+//    validate :: UI -> Object -> Number -> * -> ()
+const validate = curry((ui, fdoc, idx, val) => {
   const arg = getArg(fdoc, idx)
   debug(`checking ${fdoc.name} idx=${idx} arg=${toString(arg)} val=${toString(val)}`)
 
@@ -38,25 +38,25 @@ const validate = curry((print, fdoc, idx, val) => {
 
   if (not(isValidType(fdoc.name, arg.types, val))) {
     const err = new TypeError(formatTypeErrorMessage(fdoc, idx, val))
-    print(formatTypeError(fdoc, idx, val, err))
+    ui.print(formatTypeError(ui.process.stdout.columns, fdoc, idx, val, err))
     throw err
   }
 })
 
-//    wrapFunction :: Function -> [Object] -> Function -> String -> Function
-const wrapFunction = curry((print, docs, fn, name) => {
+//    wrapFunction :: UI -> [Object] -> Function -> String -> Function
+const wrapFunction = curry((ui, docs, fn, name) => {
   const fdoc = find(propEq('name', name), docs)
   if (fdoc == null) {
     debug(`warning: no doc for function ${quote(name)}`)
     return fn
   } else {
-    return specialCurryN(validate(print, fdoc), fn.length, [], fn)
+    return specialCurryN(validate(ui, fdoc), fn.length, [], fn)
   }
 })
 
-//    wrapRamda :: (Function, [Object], Object) -> Object
-const wrapRamda = (print, docs, ramda) =>
-  mapObjIndexed(when(isFunction, wrapFunction(print, docs)),
-                ramda)
+//    wrapRamda :: UI -> [Object] -> Object -> Object
+const wrapRamda = curry((ui, docs, ramda) =>
+  mapObjIndexed(when(isFunction, wrapFunction(ui, docs)),
+                ramda))
 
 module.exports = wrapRamda
