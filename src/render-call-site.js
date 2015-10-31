@@ -2,7 +2,6 @@ const { __, addIndex, contains, curry, filter, flip, invoker, join, map, max, mi
 const cardinal = require('cardinal')
 const fs = require('fs')
 const chalk = require('chalk')
-const firstOuterCallSite = require('./first-outer-call-site');
 
 const getFileName = invoker(0, 'getFileName')
 const lines = split('\n')
@@ -40,12 +39,10 @@ const formatLines = (ls, targetLineIdx) =>
     ])
   }, ls)
 
-const formatErrorContext = (err) => {
-  const site = firstOuterCallSite(err)
-  if (site == null) return []
+const renderCallSite = (site) => {
   const errLineIdx = site.getLineNumber() - 1
   const contextLines = readCallSiteContext(site)
   return formatLines(contextLines, errLineIdx)
 }
 
-module.exports = formatErrorContext
+module.exports = renderCallSite

@@ -1,31 +1,35 @@
-const { curry, invoker, join, map, pipe, type } = require('ramda')
+const { curry, invoker, join, map, type } = require('ramda')
 const { cyan } = require('chalk')
 const path = require('path')
 const firstOuterCallSite = require('./first-outer-call-site')
-const formatErrorContext = require('./format-error-context')
+const renderCallSite = require('./render-call-site')
 const formatHeader = require('./format-header')
 const capitalize = require('./capitalize')
 const nthStr = require('./nth-str')
-const getFileName = invoker(0, 'getFileName')
+const S = require('sanctuary')
 
+const getFileName = invoker(0, 'getFileName')
 const relative = curry(path.relative)
 const unlines = join('\n')
 const unwords = join(' ')
 const quote = (x) => `‘${x}’`
 const EMPTY = ''
 
-const errSourceRelativePath = (cwd, site) =>
-  pipe(firstOuterCallSite,
-       getFileName,
-       relative(cwd))(site)
+const callSiteRelativePath = curry((cwd, site) =>
+  relative(cwd, getFileName(site)))
 
 const formatTypeError = (ui, fn, idx, val, err) => {
-  const errOriginPath = errSourceRelativePath(ui.process.cwd(), err)
+  const columns = ui.process.stdout.columns
+  //    site :: Maybe Site
+  const site = firstOuterCallSite(err)
+  const relSitePath = map(callSiteRelativePath(ui.process.cwd()), site)
+  const header = formatHeader(columns, 'Ramda Type Error', S.fromMaybe('', relSitePath))
+  const errLines = unlines(S.fromMaybe([], map(renderCallSite, site)))
 
   return unlines([
-    formatHeader(ui.process.stdout.columns, 'Ramda Type Error', errOriginPath),
+    header,
     EMPTY,
-    unlines(formatErrorContext(err)),
+    errLines,
     EMPTY,
     unwords([
       ' ', capitalize(nthStr(idx)), 'argument to', quote(fn.name),
@@ -39,6 +43,5 @@ const formatTypeError = (ui, fn, idx, val, err) => {
     EMPTY
   ])
 }
-
 
 module.exports = formatTypeError
