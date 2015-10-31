@@ -38,7 +38,7 @@ const validate = curry((ui, fdoc, idx, val) => {
 
   if (not(isValidType(fdoc.name, arg.types, val))) {
     const err = new TypeError(formatTypeErrorMessage(fdoc, idx, val))
-    ui.print(formatTypeError(ui.process.stdout.columns, fdoc, idx, val, err))
+    ui.print(formatTypeError(ui, fdoc, idx, val, err))
     throw err
   }
 })

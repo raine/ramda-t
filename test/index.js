@@ -1,4 +1,4 @@
-const { add, assoc, identity, multiply } = require('ramda')
+const { add, always, assoc, identity, multiply } = require('ramda')
 const R = require('ramda')
 const { eq, assert } = require('./utils')
 const { doesNotThrow, throws } = assert
@@ -6,7 +6,10 @@ const sinon = require('sinon')
 const noop = () => {}
 const wrapRamda = require('../src/wrap-ramda')
 const baseUI = {
-  process: { stdout: { columns: 30 } },
+  process: {
+    cwd: always(process.env.HOME),
+    stdout: { columns: 30 }
+  },
   print: noop
 }
 

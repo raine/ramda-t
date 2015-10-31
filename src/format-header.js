@@ -1,14 +1,15 @@
-const { concat, join, pipe, repeat, toUpper } = require('ramda')
-const { red } = require('chalk')
+const { join, pipe, repeat, toUpper } = require('ramda')
+const { red, dim } = require('chalk')
 const strLen = require('string-length')
 
 const repeatStr = pipe(repeat, join(''))
 
-const formatHeader = (columns, str) => {
-  const left = red('──') + ` ${red.bold(toUpper(str))} `
-  const rlen = columns - strLen(left)
-  const right = red(repeatStr('─', rlen))
-  return concat(left, right)
+const formatHeader = (columns, title, rightText) => {
+  const left = red('──') + ` ${red.bold(toUpper(title))} `
+  const right = ` ${dim(rightText)}`
+  const lineLen = columns - strLen(left) - strLen(right)
+  const line = red(repeatStr('─', lineLen))
+  return left + line + right
 }
 
 module.exports = formatHeader
