@@ -38,7 +38,7 @@ const isValidType = (fname, types, val) => {
 //    validate :: UI -> Object -> Number -> * -> ()
 const validate = curry((ui, fdoc, idx, val) => {
   const arg = getArg(fdoc, idx)
-  debug(`checking ${fdoc.name} idx=${idx} arg=${toString(arg)} val=${toString(val)}`)
+  debug(`checking ${quote(fdoc.name)}`, { idx, arg })
 
   if (arg == null)
     return debug(`warning: no doc for ${nthStr(idx)} argument of ${quote(fdoc.name)}`)
