@@ -3,8 +3,11 @@
 SRC = $(shell find src -name "*.js" -type f | sort)
 LIB = $(patsubst src/%.js, lib/%.js, $(SRC))
 NAME = $(shell node -e "console.log(require('./package.json').name)")
-
+MOCHA = ./node_modules/.bin/mocha
 BABEL = ./node_modules/.bin/babel
+ESLINT = ./node_modules/.bin/eslint
+
+.PHONY: test lint
 
 default: all
 
@@ -37,3 +40,12 @@ clean:
 publish: all test
 	git push --tags origin HEAD:master
 	npm publish
+
+test:
+	@$(MOCHA)
+
+test-w:
+	@$(MOCHA) -w
+
+lint:
+	@$(ESLINT) src/ test/

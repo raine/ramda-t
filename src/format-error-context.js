@@ -1,9 +1,9 @@
 const { __, addIndex, anyPass, complement, contains, curry, filter, find, flip, invoker, join, map, max, min, pair, pipe, range, split } = require('ramda')
 const cardinal = require('cardinal')
 const callsites = require('error-callsites')
-const isMyCallSite = require('./is-my-call-site');
+const isMyCallSite = require('./is-my-call-site')
 const fs = require('fs')
-const chalk = require('chalk');
+const chalk = require('chalk')
 
 const getFileName = invoker(0, 'getFileName')
 const includes = curry((x, str) => str.indexOf(x) >= 0)
@@ -53,6 +53,7 @@ const formatLines = (ls, targetLineIdx) =>
 
 const formatErrorContext = (err) => {
   const site = firstOuterCallSite(err)
+  if (site == null) return []
   const errLineIdx = site.getLineNumber() - 1
   const contextLines = readCallSiteContext(site)
   return formatLines(contextLines, errLineIdx)

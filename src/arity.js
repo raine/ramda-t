@@ -1,3 +1,4 @@
+/* eslint-disable */
 module.exports = function _arity(n, fn) {
   // jshint unused:vars
   switch (n) {

@@ -2,7 +2,7 @@ const { join, map, type } = require('ramda')
 const { cyan } = require('chalk')
 const formatErrorContext = require('./format-error-context')
 const formatHeader = require('./format-header')
-const capitalize = require('./capitalize');
+const capitalize = require('./capitalize')
 const nthStr = require('./nth-str')
 
 const unlines = join('\n')
