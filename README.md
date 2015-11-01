@@ -31,6 +31,8 @@ doubleAll('foo'); // oops
 - [x] ~~Lens value types are documented as `Lens`, despite being type of `Function`~~
 - [ ] How to smoothly make `ramda-t` part of development process but drop
       for production use?
+- [ ] `R.reject` takes `Object` as second argument, and dispatches to
+      `filter`, a method of a different name than the function itself.
 
 ## caveats
 
