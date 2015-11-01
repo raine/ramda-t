@@ -26,8 +26,8 @@ const readCallSiteContext = (site) => {
   const idx = site.getLineNumber() - 1
   const content = readCallSiteFile(site)
   const highlighted = cardinal.highlight(content, { linenos: true })
-  const fileLines = indexList(lines(highlighted))
-  return pickIndexes(aroundIdx(1, idx, fileLines), fileLines)
+  const indexedLines = indexList(lines(highlighted))
+  return pickIndexes(aroundIdx(1, idx, indexedLines), indexedLines)
 }
 
 const formatLines = (ls, targetLineIdx) =>
