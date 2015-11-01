@@ -15,13 +15,23 @@ const baseUI = {
 
 const wrap = wrapRamda(baseUI)
 
+it('reports correct arity', () => {
+  const docs = [{
+    args: [ { types: [ '*' ] } ],
+    name: 'empty'
+  }]
+
+  const { empty } = wrap(docs, R)
+  eq(empty.length, R.empty.length)
+})
+
 // TODO: elaborate thrown error's messages
 it('handles any type (*)', () => {
   const docs = [{
     args: [ { types: [ '*' ] } ],
     name: 'empty'
   }]
-  
+
   const { empty } = wrap(docs, R)
 
   doesNotThrow(() => {
@@ -36,7 +46,7 @@ it('handles multiple types', () => {
     args: [ { types: [ 'String', 'Array' ] } ],
     name: 'reverse'
   }]
-  
+
   const { reverse } = wrap(docs, R)
 
   doesNotThrow(() => {
@@ -55,7 +65,7 @@ it('handles variadic functions', () => {
     }],
     name: 'pipe'
   }]
-  
+
   const { pipe } = wrap(docs, R)
 
   doesNotThrow(() => {
@@ -73,7 +83,7 @@ it('checks if a value is dispatchable if type does not match', () => {
     ],
     name: 'map'
   }]
-  
+
   const { map } = wrap(docs, R)
 
   doesNotThrow(() => map(identity, { map: noop }))
@@ -85,7 +95,7 @@ it('throws when passing an undefined to trigger invalid type', () => {
     args: [ { types: [ 'Array' ] } ],
     name: 'head'
   }]
-  
+
   const { head } = wrap(docs, R)
   throws(() => head(undefined))
 })

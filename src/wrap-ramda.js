@@ -4,6 +4,7 @@ const debug = require('debug')('ramda-t')
 const nthStr = require('./nth-str')
 const formatTypeError = require('./format-type-error')
 const formatTypeErrorMessage = require('./format-type-error-message')
+const _arity = require('./arity');
 
 const ANY_TYPE = '*'
 
@@ -70,13 +71,13 @@ const wrapFunction = curry((ui, docs, fn, name) => {
     debug(`warning: no doc for function ${quote(name)}`)
     return fn
   } else {
-    return specialCurryN(
+    return _arity(fn.length, specialCurryN(
       validate(ui, fdoc),
       mapReturnValue(fdoc),
       fn.length,
       [],
       fn
-    )
+    ))
   }
 })
 
