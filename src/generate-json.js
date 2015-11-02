@@ -1,10 +1,8 @@
 const fs = require('fs')
 const parse = require('jsdoc-parse')
 const concatStream = require('concat-stream')
-const { __, allPass, assoc, concat, curry, filter, find, head, map, path, pick, pipe, project, prop, propEq, propOr, tail, toString, toUpper, unary } = require('ramda')
-
-const capitalize = (str) =>
-  concat(toUpper(head(str)), tail(str))
+const capitalize = require('./capitalize')
+const { __, toString, allPass, assoc, curry, filter, find, head, map, path, pick, pipe, project, prop, propEq, propOr, unary } = require('ramda')
 
 //    propFromObj :: k -> (Object -> v) -> Object
 const propFromObj = curry((key, fn, obj) =>
