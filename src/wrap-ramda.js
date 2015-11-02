@@ -1,4 +1,4 @@
-const { __, any, curry, equals, find, flip, identity, ifElse, mapObjIndexed, not, pipe, prop, propEq, propSatisfies, test, type } = require('ramda')
+const { __, any, contains, curry, equals, find, flip, identity, ifElse, mapObjIndexed, not, pipe, prop, propEq, propSatisfies, test, type } = require('ramda')
 const specialCurryN = require('./special-curryN')
 const debug = require('debug')('ramda-t')
 const nthStr = require('./nth-str')
@@ -40,7 +40,7 @@ const isValidType = (fdoc, types, val) => {
   if      (anyValidType(val, types))                 return true   // val's type is any of `types`
   else if (val != null && hasMethod(fdoc.name, val)) return true   // is `val` dispatchable?
   else if (val != null && actsAsTransducer(fdoc) &&
-           equals(types, ['Array']) &&
+           contains('Array', types) &&
            isTransformer(val))                       return true   // list arg is transformer
   else                                               return false
 }
