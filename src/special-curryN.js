@@ -1,6 +1,6 @@
 var _arity = require('./arity');
 
-module.exports = function _curryN(argTap, mapResult, length, received, fn) {
+module.exports = function _curryN(tapArg, resultThunk, length, received, fn) {
   return function() {
     var combined = [];
     var argsIdx = 0;
@@ -20,13 +20,15 @@ module.exports = function _curryN(argTap, mapResult, length, received, fn) {
 
       combined[combinedIdx] = result;
       if (result == null || result['@@functional/placeholder'] !== true) {
-        argTap(combinedIdx, result)
+        tapArg(result, combinedIdx)
         left -= 1;
       }
       combinedIdx += 1;
     }
     return left <= 0
-      ? mapResult(fn.apply(this, combined))
-      : _arity(left, _curryN(argTap, mapResult, length, combined, fn));
+      ? resultThunk(combined, function() {
+          return fn.apply(this, combined)
+        })
+      : _arity(left, _curryN(tapArg, resultThunk, length, combined, fn));
   };
 };

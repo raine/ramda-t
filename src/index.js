@@ -44,6 +44,7 @@ const docs = requireOrGenDocs(JSON_DOCS_PATH, RAMDA_SOURCE)
 
 const ui = {
   print: writeLn(process.stderr),
+  eager: true,
   process
 }
 

@@ -10,7 +10,8 @@ const baseUI = {
     cwd: always(process.env.HOME),
     stdout: { columns: 30 }
   },
-  print: noop
+  print: noop,
+  eager: true
 }
 
 const wrap = wrapRamda(baseUI)
@@ -134,3 +135,24 @@ it('handles Lens type (which really is a function) as argument', () => {
 
 it('considers Arguments synonymous to Array')
 it('handles functions that act as a transducer if transformer is given in list position')
+
+describe('lazy mode', () => {
+  it('throws a TypeError only on exception', () => {
+    throws(() => {
+      map('NOT A FUNCTION', [1,2,3])
+    })
+
+    const docs = [{
+      args: [
+        { types: ['Function'] },
+        { types: ['Array'] }
+      ],
+      name: 'map'
+    }]
+
+    const ui = assoc('eager', false, baseUI)
+    const { map } = wrapRamda(ui, docs, R)
+    doesNotThrow(() => map(1))
+    throws(() => map('NOT A FUNCTION', [1,2,3]), TypeError, 'requires a value of type Function')
+  })
+})
