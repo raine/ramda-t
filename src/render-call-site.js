@@ -26,6 +26,7 @@ const CONTEXT = 3
 const readCallSiteContext = (site) => {
   const idx = site.getLineNumber() - 1
   const content = readCallSiteFile(site)
+  // TODO: don't highlight without tty
   const highlighted = cardinal.highlight(content, { linenos: true })
   const indexedLines = indexList(lines(highlighted))
   return pickIndexes(aroundIdx(CONTEXT, idx, indexedLines), indexedLines)
