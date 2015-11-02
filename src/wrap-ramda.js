@@ -4,7 +4,7 @@ const debug = require('debug')('ramda-t')
 const nthStr = require('./nth-str')
 const formatTypeError = require('./format-type-error')
 const formatTypeErrorMessage = require('./format-type-error-message')
-const _arity = require('./arity');
+const _arity = require('./arity')
 
 const when = ifElse(__, __, identity)
 const isFunction = pipe(type, equals('Function'))
@@ -80,8 +80,10 @@ const wrapFunction = curry((ui, docs, fn, name) => {
 })
 
 //    wrapRamda :: UI -> [Object] -> Object -> Object
-const wrapRamda = curry((ui, docs, ramda) =>
-  mapObjIndexed(when(isFunction, wrapFunction(ui, docs)),
-                ramda))
+const wrapRamda = curry((ui, docs, ramda) => {
+  const R = mapObjIndexed(when(isFunction, wrapFunction(ui, docs)), ramda)
+  R.__ = ramda.__
+  return R
+})
 
 module.exports = wrapRamda
