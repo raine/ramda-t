@@ -19,7 +19,7 @@ const callSiteRelativePath = curry((cwd, site) =>
   relative(cwd, getFileName(site)))
 
 const formatTypeError = (ui, fn, idx, val, err) => {
-  const columns = ui.process.stdout.columns
+  const columns = ui.process.stdout.isTTY ? ui.process.stdout.columns : 80
   //    site :: Maybe Site
   const site = firstOuterCallSite(err)
   const relSitePath = map(callSiteRelativePath(ui.process.cwd()), site)
