@@ -113,17 +113,6 @@ it('calls passed print function on invalid type', () => {
   sinon.assert.called(print)
 })
 
-it('sets @@type property for functions that return a Lens', () => {
-  const docs = [{
-    args: [ { types: [ 'Number' ] } ],
-    name: 'lensIndex',
-    returns: ['Lens']
-  }]
-
-  const { lensIndex } = wrap(docs, R)
-  eq(lensIndex(0)['@@type'], 'ramda/Lens')
-})
-
 it('handles Lens type (which really is a function) as argument', () => {
   const docs = [{
     args: [ { types: [ 'Number' ] } ],
@@ -142,3 +131,6 @@ it('handles Lens type (which really is a function) as argument', () => {
   const headLens = lensIndex(0)
   eq(view(headLens, [1, 2, 3]), 1)
 })
+
+it('considers Arguments synonymous to Array')
+it('handles functions that act as a transducer if transformer is given in list position')

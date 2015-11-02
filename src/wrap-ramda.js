@@ -1,4 +1,4 @@
-const { __, toString, any, curry, equals, find, identity, ifElse, mapObjIndexed, not, pipe, prop, propEq, replace, type, useWith } = require('ramda')
+const { __, any, curry, equals, find, flip, identity, ifElse, mapObjIndexed, not, pipe, prop, propEq, propSatisfies, test, type } = require('ramda')
 const specialCurryN = require('./special-curryN')
 const debug = require('debug')('ramda-t')
 const nthStr = require('./nth-str')
@@ -6,34 +6,43 @@ const formatTypeError = require('./format-type-error')
 const formatTypeErrorMessage = require('./format-type-error-message')
 const _arity = require('./arity');
 
-const ANY_TYPE = '*'
-
 const when = ifElse(__, __, identity)
 const isFunction = pipe(type, equals('Function'))
 const quote = (x) => `‘${x}’`
 const hasMethod = pipe(prop, isFunction)
 const isVariadic = propEq('variable', true)
 const getArg = (fn, idx) => fn.args[idx] || find(isVariadic, fn.args)
-const remove = replace(__, '')
 
-//    _type :: * -> String
-const _type = (x) =>
-  x != null && x['@@type']
-    ? remove('ramda/', x['@@type'])
-    : type(x)
+const ANY_TYPE = '*'
+const SYNONYMS = {
+  'Lens': 'Function',
+  'Array': 'Arguments'
+}
 
-//    typeEqualOrAny :: * -> String -> Boolean
-const typeEqualOrAny = curry((val, t) =>
-  t === ANY_TYPE || _type(val) === t)
+//    synonymous :: String -> String -> Boolean
+const synonymous = flip(propEq(__, __, SYNONYMS))
+
+//    matchTypeOf :: * -> String -> Boolean
+const matchTypeOf = curry((val, t) =>
+  ANY_TYPE === t || type(val) === t || synonymous(type(val), t))
 
 //    anyValidType :: * -> [String] -> Boolean
-const anyValidType = useWith(any, [ typeEqualOrAny, identity ])
+const anyValidType = (val, types) => any(matchTypeOf(val), types)
 
-//    isValidType :: String -> [String] -> * -> Boolean
-const isValidType = (fname, types, val) => {
-  if      (anyValidType(val, types))             return true   // val's type is any of `types`
-  else if (val != null && hasMethod(fname, val)) return true   // is `val` dispatchable?
-  else                                           return false
+//    actsAsTransducer :: Object -> Bool
+const actsAsTransducer = propSatisfies(test(/transformer/), 'description')
+
+//    isTransformer :: Object -> Bool
+const isTransformer = propSatisfies(isFunction, '@@transducer/step')
+
+//    isValidType :: Object -> [String] -> * -> Boolean
+const isValidType = (fdoc, types, val) => {
+  if      (anyValidType(val, types))                 return true   // val's type is any of `types`
+  else if (val != null && hasMethod(fdoc.name, val)) return true   // is `val` dispatchable?
+  else if (val != null && actsAsTransducer(fdoc) &&
+           equals(types, ['Array']) &&
+           isTransformer(val))                       return true   // list arg is transformer
+  else                                               return false
 }
 
 //    validate :: UI -> Object -> Number -> * -> ()
@@ -44,7 +53,7 @@ const validate = curry((ui, fdoc, idx, val) => {
   if (arg == null)
     return debug(`warning: no doc for ${nthStr(idx)} argument of ${quote(fdoc.name)}`)
 
-  if (not(isValidType(fdoc.name, arg.types, val))) {
+  if (not(isValidType(fdoc, arg.types, val))) {
     const err = new TypeError(formatTypeErrorMessage(fdoc, idx, val))
     err.__declutterStackTrace = true
     ui.print(formatTypeError(ui, fdoc, idx, val, err))
@@ -52,18 +61,6 @@ const validate = curry((ui, fdoc, idx, val) => {
   }
 })
 
-
-//    setType :: (String, *) -> *
-const setType = (type, val) =>
-  Object.defineProperty(val, '@@type', {
-    enumerable: false,
-    value: `ramda/${type}`
-  })
-
-//    mapReturnValue :: Object -> * -> *
-const mapReturnValue = curry((fdoc, val) =>
-  propEq('returns', ['Lens'], fdoc) ? setType('Lens', val)
-                                    : val)
 
 //    wrapFunction :: UI -> [Object] -> Function -> String -> Function
 const wrapFunction = curry((ui, docs, fn, name) => {
@@ -74,7 +71,7 @@ const wrapFunction = curry((ui, docs, fn, name) => {
   } else {
     return _arity(fn.length, specialCurryN(
       validate(ui, fdoc),
-      mapReturnValue(fdoc),
+      identity,
       fn.length,
       [],
       fn
