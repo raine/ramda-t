@@ -26,8 +26,13 @@ const isStackNoise = anyPass([
   pipe(getFileName, equals('module.js'))
 ])
 
-stackChain.filter.attach((error, frames) =>
-  reject(isStackNoise, frames))
+stackChain.filter.attach((err, frames) => {
+  if (err.__declutterStackTrace) {
+    return reject(isStackNoise, frames)
+  } else {
+    return frames
+  }
+})
 
 Error.stackTraceLimit = 20
 
