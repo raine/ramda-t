@@ -43,6 +43,13 @@ doubleAll('foo'); // oops
   annotations because they're part of the description. Workaround: Check if
   value is dispatchable, i.e. has a method by the name of the function.
 
+## running ramda test suite with `ramda-t`
+
+```sh
+./scripts/test-ramda.sh
+./scripts/test-ramda.sh propEq.js
+```
+
 ## debug output
 
 Set `DEBUG` environment variable to `ramda-t`.
