@@ -56,9 +56,9 @@ const validate = curry((ui, fdoc, val, idx) => {
     return debug(`warning: no doc for ${nthStr(idx)} argument of ${quote(fdoc.name)}`)
 
   if (not(isValidType(fdoc, arg.types, val))) {
-    const err = new TypeError(formatTypeErrorMessage(fdoc, idx, val))
+    const err = new TypeError(formatTypeErrorMessage(fdoc, arg, idx, val))
     err.__declutterStackTrace = true
-    ui.print(formatTypeError(ui, fdoc, idx, val, err))
+    ui.print(formatTypeError(ui, fdoc, arg, idx, val, err))
     throw err
   }
 })

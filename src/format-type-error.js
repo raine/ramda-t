@@ -18,7 +18,7 @@ const EMPTY = ''
 const callSiteRelativePath = curry((cwd, site) =>
   relative(cwd, getFileName(site)))
 
-const formatTypeError = (ui, fn, idx, val, err) => {
+const formatTypeError = (ui, fdoc, arg, idx, val, err) => {
   const columns = ui.process.stdout.isTTY ? ui.process.stdout.columns : 80
   //    site :: Maybe Site
   const site = firstOuterCallSite(err)
@@ -30,12 +30,12 @@ const formatTypeError = (ui, fn, idx, val, err) => {
     header,
     errLines,
     unwords([
-      ' ', capitalize(nthStr(idx)), 'argument to', quote(fn.name),
+      ' ', capitalize(nthStr(idx)), 'argument to', quote(fdoc.name),
       'was', cyan.bold(type(val)), 'instead of',
-      join(' or ', map(cyan.bold, fn.args[idx].types))
+      join(' or ', map(cyan.bold, arg.types))
     ]),
-    unwords([ ' ', fn.name, '::', fn.sig ]),
-    unwords([ ' ', `http://ramdajs.com/docs/#${fn.name}` ])
+    unwords([ ' ', fdoc.name, '::', fdoc.sig ]),
+    unwords([ ' ', `http://ramdajs.com/docs/#${fdoc.name}` ])
   ])) + '\n'
 }
 

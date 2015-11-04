@@ -73,7 +73,9 @@ it('handles variadic functions', () => {
     eq(pipe(add(1), multiply(2))(1), 4)
   })
 
-  throws(() => pipe(identity, 1))
+  throws(() => {
+    pipe(identity, identity, identity, identity, 1)
+  }, 'requires a value of type Function')
 })
 
 it('checks if a value is dispatchable if type does not match', () => {
