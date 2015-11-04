@@ -1,0 +1,12 @@
+times throws if second argument is not a valid array length
+range terminates given bad input
+values returns an empty object for primitives
+valuesIn works for primitives
+mathMod requires integer arguments
+keysIn works for primitives
+keys works for primitives
+invertObj
+invert
+invariants
+ifElse calls the true case on array items and the false case on non array items
+bind works with built-in types
