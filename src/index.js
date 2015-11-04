@@ -1,4 +1,4 @@
-const { anyPass, curry, equals, invoker, pipe, reject } = require('ramda')
+const { anyPass, curry, equals, invoker, pipe, reject, replace } = require('ramda')
 const path = require('path')
 const isMyCallSite = require('./is-my-call-site')
 const debug = require('debug')('ramda-t')
@@ -40,7 +40,16 @@ const requireOrGenDocs = (p, ramdajs) => {
 
 const mainRamda = require.main.require('ramda')
 const mainRamdaVersion = require.main.require('ramda/package.json').version
-const docs = requireOrGenDocs(JSON_DOCS_PATH, RAMDA_SOURCE)
+
+const docs = (() => {
+  const version = replace(/\./g, '_', mainRamdaVersion)
+
+  try {
+    return require(relative(['docs', `v${version}.json`]))
+  } catch (e) {
+    return requireOrGenDocs(JSON_DOCS_PATH, RAMDA_SOURCE)
+  }
+})();
 
 const ui = {
   print: writeLn(process.stderr),
@@ -67,5 +76,4 @@ stackChain.filter.attach((err, frames) => {
 Error.stackTraceLimit = 20
 
 debug('ramda-t package root', PACKAGE_ROOT)
-debug('reading docs json from path', JSON_DOCS_PATH)
 debug('ramda version', mainRamdaVersion)
