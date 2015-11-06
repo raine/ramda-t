@@ -25,10 +25,8 @@ module.exports = function _curryN(tapArg, resultThunk, length, received, fn) {
       }
       combinedIdx += 1;
     }
-    return left <= 0
-      ? resultThunk(combined, function() {
-          return fn.apply(this, combined)
-        })
-      : _arity(left, _curryN(tapArg, resultThunk, length, combined, fn));
+    return left <= 0 ? resultThunk(combined, function() {
+      return fn.apply(this, combined)
+    }) : _arity(left, _curryN(tapArg, resultThunk, length, combined, fn));
   };
 };

@@ -1,6 +1,6 @@
 const { anyPass, curry, equals, invoker, pipe, reject, replace } = require('ramda')
 const path = require('path')
-const isMyCallSite = require('./is-my-call-site')
+const isMyFile = require('./is-my-file')
 const debug = require('debug')('ramda-t')
 const wrapRamda = require('./wrap-ramda')
 const stackChain = require('stack-chain')
@@ -59,19 +59,17 @@ const ui = {
 
 module.exports = wrapRamda(ui, docs, mainRamda)
 
-const getFileName = invoker(0, 'getFileName')
-const isStackNoise = anyPass([
-  isMyCallSite,
-  pipe(getFileName, equals('module.js'))
-])
+const isStackNoise =
+  pipe(invoker(0, 'getFileName'),
+       anyPass([
+         isMyFile,
+         equals('module.js')
+       ]))
 
-stackChain.filter.attach((err, frames) => {
-  if (err.__declutterStackTrace) {
-    return reject(isStackNoise, frames)
-  } else {
-    return frames
-  }
-})
+stackChain.filter.attach((err, frames) =>
+  err.__declutterStackTrace
+    ? reject(isStackNoise, frames)
+    : frames)
 
 Error.stackTraceLimit = 20
 

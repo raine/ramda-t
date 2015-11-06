@@ -1,4 +1,4 @@
-const { curry, intersperse, invoker, join, map, type } = require('ramda')
+const { curry, identity, intersperse, join, map, prop, type, useWith } = require('ramda')
 const { cyan } = require('chalk')
 const path = require('path')
 const firstOuterCallSite = require('./first-outer-call-site')
@@ -8,21 +8,21 @@ const capitalize = require('./capitalize')
 const nthStr = require('./nth-str')
 const S = require('sanctuary')
 
-const getFileName = invoker(0, 'getFileName')
 const relative = curry(path.relative)
 const unlines = join('\n')
 const unwords = join(' ')
 const quote = (x) => `‘${x}’`
 const EMPTY = ''
 
-const callSiteRelativePath = curry((cwd, site) =>
-  relative(cwd, getFileName(site)))
+const siteRelativePath =
+  useWith(relative, [ identity, prop('file') ])
 
 const formatTypeError = (ui, fdoc, arg, idx, val, err) => {
   const columns = ui.process.stdout.isTTY ? ui.process.stdout.columns : 80
   //    site :: Maybe Site
+  const cwd = ui.process.cwd()
   const site = firstOuterCallSite(err)
-  const relSitePath = map(callSiteRelativePath(ui.process.cwd()), site)
+  const relSitePath = map(siteRelativePath(cwd), site)
   const header = formatHeader(columns, 'Ramda Type Error', S.fromMaybe('', relSitePath))
   const errLines = unlines(S.fromMaybe([], map(renderCallSite, site)))
 
